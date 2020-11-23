@@ -16,9 +16,13 @@ public class PlayerController : MonoBehaviour
     private PlayerStateMachine stateMachine;
     
     [Header("Movement")]
+    [Space]
+    [Header("Idle")]
+    [Header("Jumping")]
     [Tooltip("Vertical force applied to the Rigidbody on jump")]
     public float jumpForce = 100f;
 
+    [Header("Falling")]
     [Tooltip("Gravity multiplier while falling.")]
     [Range(0, 10)]
     public float fallMultiplier = 2.5f;
