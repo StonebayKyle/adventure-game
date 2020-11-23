@@ -1,0 +1,85 @@
+﻿public class Timer
+{
+    /// <summary>
+    /// How much time is left in the timer.
+    /// </summary>
+    public float TimeLeft { get; private set; }
+
+    /// <summary>
+    /// Timer won't tick while paused.
+    /// </summary>
+    public bool IsPaused { get; set; }
+
+    /// <summary>
+    /// Whether or not timer auto restarts when complete
+    /// </summary>
+    public bool AutoRestart { get; set; }
+
+    /// <summary>
+    /// How long the timer is.
+    /// </summary>
+    private float timerLength;
+
+    /// <summary>
+    /// Creates a new timer.
+    /// </summary>
+    /// <param name="timerLength">Starting time of the timer</param>
+    public Timer(float timerLength)
+    {
+        this.timerLength = timerLength;
+        TimeLeft = timerLength;
+    }
+
+    /// <summary>
+    /// Ticks the timer when not paused.
+    /// </summary>
+    /// <param name="timePassed">How much to reduce TimeLeft by. For example, Time.deltaTime for Update</param>
+    /// <returns>true if the timer is completed</returns>
+    public bool Tick(float timePassed)
+    {
+        if (!IsPaused) TimeLeft -= timePassed;
+
+        if (Completed())
+        {
+            if (AutoRestart)
+            {
+                Restart();
+            } else
+            {
+                IsPaused = true;
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Resets TimeLeft to timerLength and starts timer again.
+    /// </summary>
+    /// <param name="timerLength"></param>
+    public void Restart(float timerLength)
+    {
+        this.timerLength = timerLength;
+        TimeLeft = timerLength;
+        IsPaused = false;
+    }
+
+    /// <summary>
+    /// Resets TimeLeft to its initial time and starts timer again.
+    /// </summary>
+    public void Restart()
+    {
+        Restart(timerLength);
+    }
+
+    /// <summary>
+    /// Whether or not the timer is completed.
+    /// </summary>
+    /// <returns>true if the timer is completed</returns>
+    public bool Completed()
+    {
+        return TimeLeft <= 0;
+    }
+
+}
