@@ -28,6 +28,7 @@
     {
         this.timerLength = timerLength;
         TimeLeft = timerLength;
+        IsPaused = false;
     }
 
     /// <summary>
@@ -55,18 +56,35 @@
     }
 
     /// <summary>
+    /// Resets TimeLeft to timerLength, preserving <see cref="IsPaused"/> status
+    /// </summary>
+    /// /// <param name="timerLength"></param>
+    public void Reset(float timerLength)
+    {
+        this.timerLength = timerLength;
+        TimeLeft = timerLength;
+    }
+
+    /// <summary>
+    /// Resets TimeLeft to its previous timerLength, preserving <see cref="IsPaused"/> status
+    /// </summary>
+    public void Reset()
+    {
+        Reset(timerLength);
+    }
+
+    /// <summary>
     /// Resets TimeLeft to timerLength and starts timer again.
     /// </summary>
     /// <param name="timerLength"></param>
     public void Restart(float timerLength)
     {
-        this.timerLength = timerLength;
-        TimeLeft = timerLength;
+        Reset(timerLength);
         IsPaused = false;
     }
 
     /// <summary>
-    /// Resets TimeLeft to its initial time and starts timer again.
+    /// Resets TimeLeft to its previous timerLength and starts the timer again.
     /// </summary>
     public void Restart()
     {
