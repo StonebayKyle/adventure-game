@@ -26,11 +26,12 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
-        if (player.IsGrounded()) player.ChangeState(new PlayerIdleState());
+
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
     {
+        if (player.IsGrounded()) player.ChangeState(new PlayerIdleState());
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
