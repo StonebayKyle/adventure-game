@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerFallingState : IPlayerMovementState
 {
+    private bool jumpPressedRecently;
     private float initialGravityScale;
+
+    private Timer forgiveJumpTimer;
+
     public void EnterState(PlayerController player)
     {
-        Debug.LogWarning("Falling!");
-        initialGravityScale = player.RigidBody.gravityScale;
+        jumpPressedRecently = false;
+        forgiveJumpTimer = new Timer(player.forgiveJumpSeconds);
+        //Debug.LogWarning("Falling!");
         // increase gravity to get a more responsive jump
+        initialGravityScale = player.RigidBody.gravityScale;
         player.RigidBody.gravityScale *= player.fallMultiplier;
         //Debug.Log("Initial gravity scale: " + initialGravityScale + "\tActual gravity scale: " + player.RigidBody.gravityScale);
     }
@@ -21,7 +27,7 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void Update(PlayerController player)
     {
-        //Debug.Log(this + " updated");
+        UpdateForgiveJump(player);
     }
 
     public void FixedUpdate(PlayerController player)
@@ -31,12 +37,38 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
     {
-        if (player.IsGrounded()) player.ChangeState(new PlayerIdleState());
+        if (player.IsGrounded())
+        {
+            if (jumpPressedRecently)
+            {
+                player.ChangeState(new PlayerJumpingState());
+                return;
+            }
+            player.ChangeState(new PlayerIdleState());
+        }
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
     {
         
+    }
+
+    private void UpdateForgiveJump(PlayerController player)
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpPressedRecently = true;
+            forgiveJumpTimer.Restart();
+        }
+
+        if (jumpPressedRecently)
+        {
+            forgiveJumpTimer.Tick(Time.deltaTime);
+            if (forgiveJumpTimer.Completed())
+            {
+                jumpPressedRecently = false;
+            }
+        }
     }
 
 }

@@ -147,6 +147,7 @@ MonoBehaviour:
   jumpForce: 500
   fallMultiplier: 3
   lowJumpMultiplier: 2
+  forgiveJumpSeconds: 0.017
 --- !u!114 &3402348464444843781
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Gravity multiplier while jumping after the jump button is released.")]
     [Range(0, 10)] 
     public float lowJumpMultiplier = 2f;
+    [Tooltip("Time the player can queue a jump before a collision with the ground")]
+    public float forgiveJumpSeconds; // can help make jumping more responsive
+
+
 
 
 
