@@ -11,11 +11,6 @@
     public bool IsPaused { get; set; }
 
     /// <summary>
-    /// Whether or not timer auto restarts when complete
-    /// </summary>
-    public bool AutoRestart { get; set; }
-
-    /// <summary>
     /// How long the timer is.
     /// </summary>
     private float timerLength;
@@ -35,20 +30,15 @@
     /// Ticks the timer when not paused.
     /// </summary>
     /// <param name="timePassed">How much to reduce TimeLeft by. For example, Time.deltaTime for Update</param>
-    /// <returns>true if the timer is completed</returns>
+    /// <returns>true if the timer is completed.</returns>
+    /// <value>On timer completion, the timer is paused.</value>
     public bool Tick(float timePassed)
     {
         if (!IsPaused) TimeLeft -= timePassed;
 
         if (Completed())
         {
-            if (AutoRestart)
-            {
-                Restart();
-            } else
-            {
-                IsPaused = true;
-            }
+            IsPaused = true;
             return true;
         }
 
