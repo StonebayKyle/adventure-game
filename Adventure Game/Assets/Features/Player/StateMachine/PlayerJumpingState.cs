@@ -1,33 +1,36 @@
 ﻿using UnityEngine;
 
-public class PlayerIdleState : IPlayerMovementState
+public class PlayerJumpingState : IPlayerMovementState
 {
-    private bool jumpPressed;
+    private bool jumpHeld;
+    private float initialGravityScale;
 
     public void EnterState(PlayerController player)
     {
-        jumpPressed = false;
+        jumpHeld = true;
+        player.RigidBody.AddForce(new Vector2(0, player.jumpForce * Time.fixedDeltaTime),ForceMode2D.Impulse);
+        initialGravityScale = player.RigidBody.gravityScale;
     }
 
     public void ExitState(PlayerController player)
     {
-        
+        player.RigidBody.gravityScale = initialGravityScale;
     }
 
     public void Update(PlayerController player)
     {
+        jumpHeld = Input.GetButton("Jump");
         //Debug.Log(this + " updated");
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpPressed = true;
-            //Debug.LogWarning(this + "detected jump button!");
-        }
     }
+
     public void FixedUpdate(PlayerController player)
     {
-        if (jumpPressed) player.ChangeState(new PlayerJumpingState());
+        if (!jumpHeld)
+        {
+            // increase gravity so player doesn't jump as high
+            player.RigidBody.gravityScale *= player.lowJumpMultiplier;
+        }
 
-        Debug.Log("Player y velocity: " + player.RigidBody.velocity.y);
         if (player.IsFalling())
         {
             player.ChangeState(new PlayerFallingState());
@@ -36,7 +39,7 @@ public class PlayerIdleState : IPlayerMovementState
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
     {
-
+      
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)

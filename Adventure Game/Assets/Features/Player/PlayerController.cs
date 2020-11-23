@@ -4,36 +4,41 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(PhysicsCheck))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rbody;
-    public Rigidbody2D RigidBody
-    {
-        get
-        {
-            return rbody;
-        }
-    }
+    public Rigidbody2D RigidBody { get; private set; }
 
     private BoxCollider2D boxCollider;
 
+    private PhysicsCheck physicsCheck;
+
     private PlayerStateMachine stateMachine;
     
-    public float jumpForce = 5f;
+    [Header("Movement")]
+    [Tooltip("Vertical force applied to the Rigidbody on jump")]
+    public float jumpForce = 100f;
+
+    [Tooltip("Gravity multiplier while falling.")]
+    [Range(0, 10)]
+    public float fallMultiplier = 2.5f;
+    [Tooltip("Gravity multiplier while jumping after the jump button is released.")]
+    [Range(0, 10)] 
+    public float lowJumpMultiplier = 2f;
+
 
 
     private void Awake()
     {
-        rbody = GetComponent<Rigidbody2D>();
+        RigidBody = GetComponent<Rigidbody2D>();
+
         boxCollider = GetComponent<BoxCollider2D>();
+
+        physicsCheck = GetComponent<PhysicsCheck>();
 
         stateMachine = new PlayerStateMachine(this);
     }
 
-    public void ChangeState(IPlayerMovementState newState)
-    {
-        stateMachine.ChangeState(newState);
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +65,20 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         stateMachine.OnCollisionExit(collision);
+    }
+    public void ChangeState(IPlayerMovementState newState)
+    {
+        stateMachine.ChangeState(newState);
+    }
+
+    public bool IsFalling()
+    {
+        return physicsCheck.IsFalling();
+    }
+
+    public bool IsGrounded()
+    {
+        return physicsCheck.IsGrounded();
     }
 
 }

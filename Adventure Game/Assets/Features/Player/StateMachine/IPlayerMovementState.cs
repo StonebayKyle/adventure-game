@@ -23,7 +23,7 @@ public interface IPlayerMovementState
     void FixedUpdate(PlayerController player);
 
     /// <summary>
-    /// Called every time player collides with a collider
+    /// Called every time player enters a collision
     /// </summary>
     void OnCollisionEnter2D(PlayerController player, Collision2D collision);
 
