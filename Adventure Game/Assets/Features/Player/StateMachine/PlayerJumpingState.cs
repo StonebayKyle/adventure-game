@@ -25,10 +25,14 @@ public class PlayerJumpingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
-        if (!jumpHeld)
+        if (jumpHeld)
+        {
+            // resets gravity back to intital when the player holds jump
+            player.RigidBody.gravityScale = initialGravityScale;
+        } else
         {
             // increase gravity so player doesn't jump as high
-            player.RigidBody.gravityScale *= player.lowJumpMultiplier;
+            player.RigidBody.gravityScale = initialGravityScale * player.lowJumpMultiplier;
         }
 
         if (player.IsFalling())

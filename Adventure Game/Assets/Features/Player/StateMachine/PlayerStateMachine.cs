@@ -19,12 +19,12 @@ public class PlayerStateMachine
         if (currentState != null)
         {
             currentState.ExitState(player);
-            //Debug.Log("Player exited [" + currentState + "]");
+            Debug.Log("Player exited [" + currentState + "]");
         }
 
         currentState = newState;
         currentState.EnterState(player);
-        //Debug.Log("Player entered [" + currentState + "]");
+        Debug.Log("Player entered [" + currentState + "]");
     }
 
     public void Update()

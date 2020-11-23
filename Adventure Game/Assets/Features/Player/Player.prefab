@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 500
   fallMultiplier: 3
-  lowJumpMultiplier: 2
+  lowJumpMultiplier: 5
   forgiveJumpSeconds: 0.017
 --- !u!114 &3402348464444843781
 MonoBehaviour:
