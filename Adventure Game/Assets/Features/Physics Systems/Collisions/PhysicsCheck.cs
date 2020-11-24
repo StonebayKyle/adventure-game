@@ -39,4 +39,9 @@ public class PhysicsCheck : MonoBehaviour
     {
         return rbody.velocity.y < fallVelocityThreshold;
     }
+
+    public bool IsHorizontallyMoving()
+    {
+        return rbody.velocity.x != 0;
+    }
 }

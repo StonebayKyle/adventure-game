@@ -14,8 +14,17 @@ public class PlayerController : MonoBehaviour
     private PhysicsCheck physicsCheck;
 
     private PlayerStateMachine stateMachine;
-    
+
+    // input captures
+    [System.NonSerialized]
+    public float horizontalMovementAxis;
+    [System.NonSerialized]
+    public bool leftHeld;
+    [System.NonSerialized]
+    public bool rightHeld;
+
     [Header("Movement", order = 0)]
+    public float moveForce = 100f;
 
     [Header("Idle", order = 1)]
 
@@ -59,11 +68,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateInputs();
+
         stateMachine.Update();
     }
 
     private void FixedUpdate()
     {
+        Move();
         stateMachine.FixedUpdate();
     }
 
@@ -81,6 +93,19 @@ public class PlayerController : MonoBehaviour
         stateMachine.ChangeState(newState);
     }
 
+    private void UpdateInputs()
+    {
+        horizontalMovementAxis = Input.GetAxis("Horizontal");
+        leftHeld = horizontalMovementAxis < 0;
+        rightHeld = horizontalMovementAxis > 0;
+    }
+
+    private void Move()
+    {
+        // TODO actually make movement work
+        RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0));
+    }
+
     public bool IsFalling()
     {
         return physicsCheck.IsFalling();
@@ -89,6 +114,11 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return physicsCheck.IsGrounded();
+    }
+
+    public bool IsHorizontallyMoving()
+    {
+        return physicsCheck.IsHorizontallyMoving();
     }
 
 }

@@ -17,11 +17,13 @@ public class PlayerIdleState : IPlayerMovementState
     public void Update(PlayerController player)
     {
         //Debug.Log(this + " updated");
+
         if (Input.GetButtonDown("Jump"))
         {
             jumpPressed = true;
             //Debug.LogWarning(this + "detected jump button!");
         }
+
     }
     public void FixedUpdate(PlayerController player)
     {
@@ -31,6 +33,11 @@ public class PlayerIdleState : IPlayerMovementState
         if (player.IsFalling())
         {
             player.ChangeState(new PlayerFallingState());
+        }
+
+        if (player.horizontalMovementAxis != 0 || player.IsHorizontallyMoving())
+        {
+            player.ChangeState(new PlayerRunningState());
         }
     }
 
