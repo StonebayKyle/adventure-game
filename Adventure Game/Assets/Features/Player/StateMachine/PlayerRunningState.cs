@@ -26,6 +26,7 @@ public class PlayerRunningState : IPlayerMovementState
     public void FixedUpdate(PlayerController player)
     {
         if (jumpPressed) player.ChangeState(new PlayerJumpingState());
+        if (player.IsFalling()) player.ChangeState(new PlayerFallingState());
         ExitOnStop(player);
     }
 

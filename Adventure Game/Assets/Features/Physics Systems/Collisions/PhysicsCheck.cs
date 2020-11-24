@@ -17,11 +17,17 @@ public class PhysicsCheck : MonoBehaviour
     [Tooltip("How fast the object is moving downward before the object is considered falling.")]
     [SerializeField]
     private float fallVelocityThreshold = -.0001f;
+    [Header("Move Check")]
+
+    [Tooltip("How fast the object is moving horizontally before the object is considered moving.")]
+    [SerializeField]
+    private float moveVelocityThreshold = .001f;
 
 
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
+        moveVelocityThreshold = Mathf.Abs(moveVelocityThreshold); // must be positive
     }
 
     public bool IsGrounded()
@@ -42,6 +48,7 @@ public class PhysicsCheck : MonoBehaviour
 
     public bool IsHorizontallyMoving()
     {
-        return rbody.velocity.x != 0;
+        return rbody.velocity.x < -moveVelocityThreshold || // left direction
+            rbody.velocity.x > moveVelocityThreshold; // right direction
     }
 }

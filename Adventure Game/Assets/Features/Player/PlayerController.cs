@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // TODO actually make movement work
-        RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0));
+        RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0), ForceMode2D.Force);
     }
 
     public bool IsFalling()
