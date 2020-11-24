@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Idle", order = 1)]
 
-    [Header("Jumping", order = 2)]
+    [Header("Running", order = 2)]
+
+    [Header("Jumping", order = 3)]
 
     [Tooltip("Vertical force applied to the Rigidbody on jump")]
     public float jumpForce = 100f;
@@ -34,9 +36,6 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f;
     [Tooltip("Time the player can queue a jump before a collision with the ground")]
     public float forgiveJumpSeconds; // can help make jumping more responsive
-
-
-
 
 
     private void Awake()
