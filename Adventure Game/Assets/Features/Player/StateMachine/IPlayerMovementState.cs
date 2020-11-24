@@ -13,7 +13,7 @@ public interface IPlayerMovementState
     void ExitState(PlayerController player);
 
     /// <summary>
-    /// Called every Update. Use to detect inputs & do frame-based actions
+    /// Called every Update. Use to detect inputs and do frame-based actions
     /// </summary>
     void Update(PlayerController player);
 
