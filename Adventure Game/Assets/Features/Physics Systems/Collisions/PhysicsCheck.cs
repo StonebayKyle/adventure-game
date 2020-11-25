@@ -51,4 +51,5 @@ public class PhysicsCheck : MonoBehaviour
         return rbody.velocity.x < -moveVelocityThreshold || // left direction
             rbody.velocity.x > moveVelocityThreshold; // right direction
     }
+
 }
