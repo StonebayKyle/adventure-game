@@ -40,17 +40,17 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jumping", order = 3)]
 
-    [Tooltip("Vertical force applied to the Rigidbody on jump")]
+    [Tooltip("Vertical force applied to the Rigidbody on jump.")]
     public float jumpForce = 100f;
+    [Tooltip("Gravity multiplier while jumping after the jump button is released.")]
+    [Range(0, 10)] 
+    public float lowJumpMultiplier = 2f;
 
     [Header("Falling")]
 
     [Tooltip("Gravity multiplier while falling.")]
     [Range(0, 10)]
     public float fallMultiplier = 2.5f;
-    [Tooltip("Gravity multiplier while jumping after the jump button is released.")]
-    [Range(0, 10)] 
-    public float lowJumpMultiplier = 2f;
     [Tooltip("Time the player can queue a jump before a collision with the ground")]
     public float forgiveJumpSeconds; // can help make jumping more responsive
 

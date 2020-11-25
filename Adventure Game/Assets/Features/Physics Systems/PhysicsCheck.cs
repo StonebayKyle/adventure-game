@@ -7,19 +7,18 @@ public class PhysicsCheck : MonoBehaviour
 
     [Header("Ground Check")]
 
-    [SerializeField]
     public LayerMask groundLayer;
     [Tooltip("Distance below the object to check for the ground.")]
     [SerializeField]
     private float checkDistance = 1f;
     [Header("Fall Check")]
 
-    [Tooltip("How fast the object is moving downward before the object is considered falling.")]
+    [Tooltip("Minimum vertical velocity downward(must be negative) for the object to be considered falling.")]
     [SerializeField]
     private float fallVelocityThreshold = -.0001f;
     [Header("Move Check")]
 
-    [Tooltip("How fast the object is moving horizontally before the object is considered moving.")]
+    [Tooltip("Minimum horizontal velocity (absolute, must be positive) for the object to be considered moving.")]
     [SerializeField]
     private float moveVelocityThreshold = .001f;
 
@@ -27,7 +26,6 @@ public class PhysicsCheck : MonoBehaviour
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
-        moveVelocityThreshold = Mathf.Abs(moveVelocityThreshold); // must be positive
     }
 
     public bool IsGrounded()
