@@ -34,9 +34,10 @@ public class PhysicsCheck : MonoBehaviour
         return hit.collider != null;
     }
 
-    private void OnDrawGizmosSelected()
+    private void Update()
     {
-        Gizmos.DrawRay(transform.position, Vector2.down);
+        // IsGrounded debug line
+        Debug.DrawRay(transform.position, Vector3.down * checkDistance, Color.green);
     }
 
     public bool IsFalling()
