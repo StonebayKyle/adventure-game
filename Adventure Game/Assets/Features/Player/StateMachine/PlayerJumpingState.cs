@@ -28,7 +28,7 @@ public class PlayerJumpingState : IPlayerMovementState
         if (jumpHeld)
         {
             // resets gravity back to intital when the player holds jump
-            player.RigidBody.gravityScale = initialGravityScale;
+            //player.RigidBody.gravityScale = initialGravityScale;
         } else
         {
             // increase gravity so player doesn't jump as high
