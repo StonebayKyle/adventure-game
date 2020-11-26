@@ -25,9 +25,21 @@ public class PlayerRunningState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
-        if (jumpPressed) player.ChangeState(new PlayerJumpingState());
-        if (player.IsFalling()) player.ChangeState(new PlayerFallingState());
-        ExitOnStop(player);
+        if (jumpPressed)
+        {
+            player.ChangeState(new PlayerJumpingState());
+            return;
+        }
+        if (player.IsFalling())
+        {
+            player.ChangeState(new PlayerFallingState());
+            return;
+        }
+        if (player.horizontalMovementAxis == 0 && !player.IsHorizontallyMoving())
+        {
+            player.ChangeState(new PlayerIdleState());
+            return;
+        }
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
@@ -38,14 +50,5 @@ public class PlayerRunningState : IPlayerMovementState
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
     {
         
-    }
-
-
-    private void ExitOnStop(PlayerController player)
-    {
-        if (player.horizontalMovementAxis == 0 && !player.IsHorizontallyMoving())
-        {
-            player.ChangeState(new PlayerIdleState());
-        }
     }
 }

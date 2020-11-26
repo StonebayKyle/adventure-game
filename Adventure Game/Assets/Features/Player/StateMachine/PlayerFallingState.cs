@@ -45,6 +45,7 @@ public class PlayerFallingState : IPlayerMovementState
                 return;
             }
             player.ChangeState(new PlayerIdleState());
+            return;
         }
     }
 

@@ -33,11 +33,13 @@ public class PlayerIdleState : IPlayerMovementState
         if (player.IsFalling())
         {
             player.ChangeState(new PlayerFallingState());
+            return;
         }
 
         if (player.horizontalMovementAxis != 0 || player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerRunningState());
+            return;
         }
     }
 
