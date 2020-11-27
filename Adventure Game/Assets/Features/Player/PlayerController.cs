@@ -26,18 +26,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
     public float maxSpeed = 5f;
-    [Tooltip("How much force is applied per FixedUpdate when the player is inputting a direction to move. A higher value means a quicker acceleration to maxSpeed.")]
-    public float moveForce = 50f;
-    [Tooltip("How much time it takes to reach max speed horizontally")]
+    [Tooltip("How much time it takes to reach max speed horizontally.")]
     public float accelerationTime = 5f;
-    [Tooltip("How much time it takes to stop from max speed horizontally")]
+    [Tooltip("How much time it takes to stop from max speed horizontally.")]
     public float decelerationTime = 5f;
     private float xVelocityRef = 0; // used as reference in velocity damping
-    [Tooltip("Velocity multiplier for subtraction applied in the opposite direction of horizontal movement when there is no horizontal input. A higher value means a quicker deceleration.")]
-    public float noInputDrag = 5f;
-    [Tooltip("Velocity multiplier for subtraction applied in the opposite direction of horizontal movement when the player is inputting away from current movement (on top of the opposite moveForce). A higher value means a quicker deceleration.")]
-    public float changeDirectionDrag = 5f;
-
 
     [Header("Idle", order = 1)]
 
@@ -126,23 +119,6 @@ public class PlayerController : MonoBehaviour
         RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
         Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
 
-        // slow movement when nothing is pressed (on top of friction and drag from RigidBody)
-        //if (horizontalMovementAxis == 0)
-        //{
-        //    RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, noInputDrag);
-        //} else if (HorizontalMovementUnderMax(maxSpeed))
-        //{
-        //    // only move when under max speed
-        //    //RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0), ForceMode2D.Force);
-            
-
-        //    if (InputAwayFromMovement())
-        //    {
-        //        RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, changeDirectionDrag);
-        //    }
-        //}
-
-
     }
 
     // decelerate
@@ -160,21 +136,10 @@ public class PlayerController : MonoBehaviour
                 (rightHeld && RigidBody.velocity.x < 0);
     }
 
-    private static Vector2 HorizontalDragVelocityLost(Vector2 velocity, float drag)
-    {
-        return new Vector2(velocity.x * drag * Time.fixedDeltaTime, 0);
-    }
-
     public bool HorizontalMovementUnderMax(float maxSpeed)
     {
         return (rightHeld && RigidBody.velocity.x < maxSpeed) ||
             (leftHeld && RigidBody.velocity.x > -maxSpeed);
-    }
-
-    public bool InputAwayFromMovement()
-    {
-        return (rightHeld && RigidBody.velocity.x < 0) ||
-            (leftHeld && RigidBody.velocity.x >= 0);
     }
 
     public bool IsFalling()
