@@ -131,8 +131,8 @@ public class PlayerController : MonoBehaviour
     {
         float xVelocity = 0.0f;
         float stopSpeed = 0f;
-        float move = Mathf.SmoothDamp(RigidBody.velocity.x, stopSpeed, ref xVelocity, decelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
-        RigidBody.velocity = new Vector2(move, RigidBody.velocity.y);
+        float smoothedVelocity = Mathf.SmoothDamp(RigidBody.velocity.x, stopSpeed, ref xVelocity, decelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
+        RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
     }
 
     private bool HeadingOppositeDirection()
