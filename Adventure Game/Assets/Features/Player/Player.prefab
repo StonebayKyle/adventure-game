@@ -145,12 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 25
-  moveForce: 100
-  noInputDrag: 5
-  changeDirectionDrag: 5
-  jumpForce: 500
-  fallMultiplier: 3
-  lowJumpMultiplier: 5
+  accelerationTime: 0.1
+  oppositeInputDecelerationTime: 0.05
+  noInputDecelerationTime: 0.1
+  jumpForce: 1000
+  lowJumpMultiplier: 3
+  fallMultiplier: 1
   forgiveJumpSeconds: 0.017
 --- !u!114 &3402348464444843781
 MonoBehaviour:
@@ -169,4 +169,4 @@ MonoBehaviour:
     m_Bits: 256
   checkDistance: 1.3
   fallVelocityThreshold: -0.0001
-  moveVelocityThreshold: 0.001
+  moveVelocityThreshold: 1
