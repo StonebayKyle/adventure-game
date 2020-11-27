@@ -27,9 +27,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
     public float maxSpeed = 5f;
     [Tooltip("How much time it takes to reach max speed horizontally.")]
-    public float accelerationTime = 5f;
-    [Tooltip("How much time it takes to stop from max speed horizontally.")]
-    public float decelerationTime = 5f;
+    public float accelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction.")]
+    public float oppositeInputDecelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
+    public float noInputDecelerationTime = 1f;
     private float xVelocityRef = 0; // used as reference in velocity damping
 
     [Header("Idle", order = 1)]
@@ -108,9 +110,12 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (horizontalMovementAxis == 0 || HeadingOppositeDirection())
+        if (horizontalMovementAxis == 0)
         {
-            StopMoving();
+            StopMoving(noInputDecelerationTime);
+        } else if (HeadingOppositeDirection())
+        {
+            StopMoving(oppositeInputDecelerationTime);
         }
 
         float targetVelocity = horizontalMovementAxis * maxSpeed;
@@ -122,7 +127,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // decelerate
-    private void StopMoving()
+    private void StopMoving(float decelerationTime)
     {
         float xVelocity = 0.0f;
         float stopSpeed = 0f;
