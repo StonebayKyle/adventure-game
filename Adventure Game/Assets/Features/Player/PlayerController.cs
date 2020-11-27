@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 5f;
     [Tooltip("How much force is applied per FixedUpdate when the player is inputting a direction to move. A higher value means a quicker acceleration to maxSpeed.")]
     public float moveForce = 50f;
+    [Tooltip("How much time it takes to reach max speed horizontally")]
+    public float accelerationTime = 5f;
+    [Tooltip("How much time it takes to stop from max speed horizontally")]
+    public float decelerationTime = 5f;
+    private float xVelocityRef = 0; // used as reference in velocity damping
     [Tooltip("Velocity multiplier for subtraction applied in the opposite direction of horizontal movement when there is no horizontal input. A higher value means a quicker deceleration.")]
     public float noInputDrag = 5f;
     [Tooltip("Velocity multiplier for subtraction applied in the opposite direction of horizontal movement when the player is inputting away from current movement (on top of the opposite moveForce). A higher value means a quicker deceleration.")]
@@ -50,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Gravity multiplier while falling.")]
     [Range(0, 10)]
-    public float fallMultiplier = 2.5f;
+    public float fallMultiplier = 1f;
     [Tooltip("Time the player can queue a jump before a collision with the ground")]
     public float forgiveJumpSeconds; // can help make jumping more responsive
 
@@ -110,21 +115,49 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        // slow movement when nothing is pressed (on top of friction and drag from RigidBody)
-        if (horizontalMovementAxis == 0)
+        if (horizontalMovementAxis == 0 || HeadingOppositeDirection())
         {
-            RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, noInputDrag);
-        } else if (HorizontalMovementUnderMax(maxSpeed))
-        {
-            // only move when under max speed
-            RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0), ForceMode2D.Force);
-            if (InputAwayFromMovement())
-            {
-                RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, changeDirectionDrag);
-            }
+            StopMoving();
         }
 
+        float targetVelocity = horizontalMovementAxis * maxSpeed;
 
+        float smoothedVelocity = Mathf.SmoothDamp(RigidBody.velocity.x, targetVelocity, ref xVelocityRef, accelerationTime, maxSpeed, Time.fixedDeltaTime);
+        //RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
+        Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
+
+        // slow movement when nothing is pressed (on top of friction and drag from RigidBody)
+        //if (horizontalMovementAxis == 0)
+        //{
+        //    RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, noInputDrag);
+        //} else if (HorizontalMovementUnderMax(maxSpeed))
+        //{
+        //    // only move when under max speed
+        //    //RigidBody.AddForce(new Vector2(horizontalMovementAxis * moveForce, 0), ForceMode2D.Force);
+            
+
+        //    if (InputAwayFromMovement())
+        //    {
+        //        RigidBody.velocity -= HorizontalDragVelocityLost(RigidBody.velocity, changeDirectionDrag);
+        //    }
+        //}
+
+
+    }
+
+    // decelerate
+    private void StopMoving()
+    {
+        float xVelocity = 0.0f;
+        float stopSpeed = 0f;
+        float move = Mathf.SmoothDamp(RigidBody.velocity.x, stopSpeed, ref xVelocity, decelerationTime, maxSpeed, Time.fixedDeltaTime);
+        RigidBody.velocity = new Vector2(move, RigidBody.velocity.y);
+    }
+
+    private bool HeadingOppositeDirection()
+    {
+        return (leftHeld && RigidBody.velocity.x > 0) ||
+                (rightHeld && RigidBody.velocity.x < 0);
     }
 
     private static Vector2 HorizontalDragVelocityLost(Vector2 velocity, float drag)
