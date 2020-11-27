@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         float targetVelocity = horizontalMovementAxis * maxSpeed;
 
         float smoothedVelocity = Mathf.SmoothDamp(RigidBody.velocity.x, targetVelocity, ref xVelocityRef, accelerationTime, maxSpeed, Time.fixedDeltaTime);
-        //RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
+        RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
         Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
 
         // slow movement when nothing is pressed (on top of friction and drag from RigidBody)
