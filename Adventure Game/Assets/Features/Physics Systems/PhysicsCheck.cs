@@ -30,6 +30,8 @@ public class PhysicsCheck : MonoBehaviour
 
     public bool IsGrounded()
     {
+        if (!IsFalling()) return true;
+
         // TODO make this use colliders
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, checkDistance, groundLayer);
         return hit.collider != null;
