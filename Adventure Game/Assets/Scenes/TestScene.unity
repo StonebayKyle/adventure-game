@@ -562,26 +562,6 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552513, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552513, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552513, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552513, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552514, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_Name
@@ -619,31 +599,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
-      propertyPath: jumpForce
-      value: 1200
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: accelerationTime
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: oppositeInputDecelerationTime
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: noInputDecelerationTime
-      value: 0.025
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
       propertyPath: accelerationForce
       value: 3
       objectReference: {fileID: 0}
@@ -656,11 +611,6 @@ PrefabInstance:
         type: 3}
       propertyPath: oppositeInputForce
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: friction
-      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}

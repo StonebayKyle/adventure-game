@@ -99,8 +99,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 32a3f4aa1e71d434ea5dacb9fd889f41, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -144,11 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a223cdac492094bb7844fe238099b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 25
-  accelerationTime: 0.1
-  oppositeInputDecelerationTime: 0.05
-  noInputDecelerationTime: 0.1
-  jumpForce: 1000
+  maxSpeed: 20
+  accelerationTime: 0.025
+  oppositeInputDecelerationTime: 0.025
+  noInputDecelerationTime: 0.025
+  friction: 0.9
+  jumpForce: 1200
   lowJumpMultiplier: 3
   fallMultiplier: 1
   forgiveJumpSeconds: 0.017
