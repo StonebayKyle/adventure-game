@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 5f;
     [Tooltip("How much time it takes to reach max speed horizontally.")]
     public float accelerationTime = 1f;
-    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction.")]
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction. This number is effectively half  because it targets the opposite max speed.")]
     public float oppositeInputDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
     public float noInputDecelerationTime = 1f;
@@ -103,27 +103,37 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateInputs()
     {
-        horizontalMovementAxis = Input.GetAxis("Horizontal");
+        horizontalMovementAxis = Input.GetAxisRaw("Horizontal");
         leftHeld = horizontalMovementAxis < 0;
         rightHeld = horizontalMovementAxis > 0;
     }
 
     private void Move()
     {
-        if (horizontalMovementAxis == 0)
-        {
-            StopMoving(noInputDecelerationTime);
-        } else if (HeadingOppositeDirection())
-        {
-            StopMoving(oppositeInputDecelerationTime);
-        }
 
+        //Vector2 targetVelocity = new Vector2(horizontalMovementAxis * maxSpeed, 0);
         float targetVelocity = horizontalMovementAxis * maxSpeed;
 
-        float smoothedVelocity = Mathf.SmoothDamp(RigidBody.velocity.x, targetVelocity, ref xVelocityRef, accelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
-        RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
-        Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
+        // with input
+        if (horizontalMovementAxis != 0)
+        {
+            if (HeadingTowardsCurrentDirection())
+            {
+                // speed up to maxSpeed
+                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime);
+            } else if (!HeadingTowardsCurrentDirection())
+            {
+                // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
+                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime);
+            }
+        } else
+        {
+            // no input decleration to stop
+            PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime);
+        }
 
+        //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
+        Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
     }
 
     // decelerate
@@ -135,10 +145,10 @@ public class PlayerController : MonoBehaviour
         RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
     }
 
-    private bool HeadingOppositeDirection()
+    private bool HeadingTowardsCurrentDirection()
     {
-        return (leftHeld && RigidBody.velocity.x > 0) ||
-                (rightHeld && RigidBody.velocity.x < 0);
+        return (leftHeld && RigidBody.velocity.x <= 0) ||
+                (rightHeld && RigidBody.velocity.x >= 0);
     }
 
     public bool HorizontalMovementUnderMax(float maxSpeed)
