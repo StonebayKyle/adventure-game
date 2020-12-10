@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     public float oppositeInputDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
     public float noInputDecelerationTime = 1f;
-    private float xVelocityRef = 0; // used as reference in velocity damping
 
     [Header("Idle", order = 1)]
 
