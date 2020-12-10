@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public float oppositeInputDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
     public float noInputDecelerationTime = 1f;
+    [Tooltip("Multiplier for acceleration time (does not effect deceleration time). -1 means half the time, 0 means no change, 1 means double the time.")]
+    [Range(-1,1)]
+    public float friction = 0;
 
     [Header("Idle", order = 1)]
 
@@ -119,7 +122,7 @@ public class PlayerController : MonoBehaviour
             if (HeadingTowardsCurrentDirection())
             {
                 // speed up to maxSpeed
-                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime);
+                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, friction);
             } else if (!HeadingTowardsCurrentDirection())
             {
                 // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.

@@ -55,4 +55,17 @@ public class PhysicsUtils
             , 0);
         rigidbody.AddForce(force);
     }
+
+
+    /// <summary>
+    /// Overload of <see cref="ApplyForceTowards(Rigidbody2D, float, float)"/> with <paramref name="friction"/> (Range of -1 to 1), which modifies accelerationTime.
+    /// </summary>
+    /// <param name="rigidbody"></param>
+    /// <param name="targetVelocity"></param>
+    /// <param name="accelerationTime"></param>
+    /// <param name="friction"></param>
+    public static void ApplyForceTowards(Rigidbody2D rigidbody, float targetVelocity, float accelerationTime, float friction)
+    {
+        ApplyForceTowards(rigidbody, targetVelocity, accelerationTime * (friction+1));
+    }
 }
