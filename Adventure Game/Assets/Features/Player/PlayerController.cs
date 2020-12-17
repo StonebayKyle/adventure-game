@@ -32,9 +32,14 @@ public class PlayerController : MonoBehaviour
     public float oppositeInputDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
     public float noInputDecelerationTime = 1f;
-    [Tooltip("Multiplier for acceleration time (does not effect deceleration time). -1 means half the time, 0 means no change, 1 means double the time.")]
-    [Range(-1,1)]
-    public float friction = 0;
+
+    // these values can represent a "kind" of friction
+    [Tooltip("Multiplier for acceleration time. 0 means no acceleration, 1 means normal acceleration. 0-1 means reduced time, 1+ means increased time.")]
+    [Range(0,5)]
+    public float accelerationTimeMultiplier = 1;
+    [Tooltip("Multiplier for deceleration times (opposite and no input). 0 means no deceleration, 1 means normal deceleration. 0-1 means reduced time, 1+ means increased time.")]
+    [Range(0, 5)]
+    public float decelerationTimeMultiplier = 1;
 
     [Header("Idle", order = 1)]
 
@@ -122,16 +127,16 @@ public class PlayerController : MonoBehaviour
             if (HeadingTowardsCurrentDirection())
             {
                 // speed up to maxSpeed
-                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, friction);
+                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, accelerationTimeMultiplier);
             } else if (!HeadingTowardsCurrentDirection())
             {
                 // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
-                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime);
+                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime, decelerationTimeMultiplier);
             }
         } else
         {
             // no input decleration to stop
-            PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime);
+            PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
         }
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
