@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public bool leftHeld;
     [System.NonSerialized]
     public bool rightHeld;
+    private bool prevleftHeld;
+    private bool prevRightHeld;
 
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
@@ -110,6 +112,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateInputs()
     {
+        prevleftHeld = leftHeld;
+        prevRightHeld = rightHeld;
         horizontalMovementAxis = Input.GetAxisRaw("Horizontal");
         leftHeld = horizontalMovementAxis < 0;
         rightHeld = horizontalMovementAxis > 0;
@@ -168,6 +172,13 @@ public class PlayerController : MonoBehaviour
     public bool IsHorizontallyMoving()
     {
         return physicsCheck.IsHorizontallyMoving();
+    }
+
+    // this update (due to how prevHorizontalMovementAxis is assigned)
+    public bool ChangedInputMovementDirection()
+    {
+        // you could also compare a previous horizontalMovementAxis with the current one, but that would not support joystick controllers.
+        return prevleftHeld != leftHeld || prevRightHeld != rightHeld;
     }
 
 }
