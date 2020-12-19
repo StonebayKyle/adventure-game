@@ -143,15 +143,6 @@ public class PlayerController : MonoBehaviour
         Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
     }
 
-    // decelerate
-    private void StopMoving(float decelerationTime)
-    {
-        float xVelocity = 0.0f;
-        float stopSpeed = 0f;
-        float smoothedVelocity = Mathf.SmoothDamp(RigidBody.velocity.x, stopSpeed, ref xVelocity, decelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
-        RigidBody.velocity = new Vector2(smoothedVelocity, RigidBody.velocity.y);
-    }
-
     private bool HeadingTowardsCurrentDirection()
     {
         return (leftHeld && RigidBody.velocity.x <= 0) ||
