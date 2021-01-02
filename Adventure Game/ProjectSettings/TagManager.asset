@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Virtual Camera
+  - Equipable
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Player
   - Ground
-  - 
+  - Equipables
   - 
   - 
   - 
@@ -41,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Environment
+    uniqueID: 2348829713
+    locked: 0
+  - name: Background
+    uniqueID: 4279018687
+    locked: 0
+  - name: Player
+    uniqueID: 3679305653
+    locked: 0
+  - name: Equipables
+    uniqueID: 3354059685
     locked: 0
