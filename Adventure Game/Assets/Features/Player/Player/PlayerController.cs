@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerStateMachine stateMachine;
 
+    private bool isFacingRight = true;
+
     // input captures
     [System.NonSerialized]
     public float horizontalMovementAxis; // horizontal input
@@ -121,6 +123,10 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
+        if (ChangedInputMovementDirection())
+        {
+            Flip(); // make the player always face towards the direction they're running.
+        }
 
         //Vector2 targetVelocity = new Vector2(horizontalMovementAxis * maxSpeed, 0);
         float targetVelocity = horizontalMovementAxis * maxSpeed;
@@ -145,6 +151,14 @@ public class PlayerController : MonoBehaviour
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
+    }
+
+    private void Flip()
+    {
+        Debug.LogWarning("Flip!");
+        isFacingRight = !isFacingRight;
+
+        transform.Rotate(0f, 180f, 0);
     }
 
     private bool HeadingTowardsCurrentDirection()
@@ -177,8 +191,9 @@ public class PlayerController : MonoBehaviour
     // this update (due to how prevHorizontalMovementAxis is assigned)
     public bool ChangedInputMovementDirection()
     {
-        // you could also compare a previous horizontalMovementAxis with the current one, but that would not support joystick controllers.
-        return prevleftHeld != leftHeld || prevRightHeld != rightHeld;
+        if (horizontalMovementAxis == 0) return false; // no change (in direction) when input stops.
+
+        return rightHeld != isFacingRight;
     }
 
 }
