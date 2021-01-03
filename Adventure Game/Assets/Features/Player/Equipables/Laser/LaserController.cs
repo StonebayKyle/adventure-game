@@ -5,8 +5,7 @@ using UnityEngine;
 public class LaserController : MonoBehaviour
 {
     [Tooltip("The transform point for where the laser should be bound to positionally. This is intended for where the laser would be held from (i.e. hands, pedestal, etc).")]
-    [SerializeField]
-    private Transform holdPoint;
+    public Transform holdPoint;
 
     private Rigidbody2D rb;
 
