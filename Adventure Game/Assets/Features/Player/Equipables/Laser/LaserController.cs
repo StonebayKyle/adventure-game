@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class LaserController : MonoBehaviour
 {
-    [Header("Holding Points")]
+    [Tooltip("The transform point for where the laser should be bound to positionally. This is intended for where the laser would be held from (i.e. hands, pedestal, etc).")]
     [SerializeField]
-    private Transform leftHoldPoint;
-    [SerializeField]
-    private Transform rightHoldPoint;
+    private Transform holdPoint;
 
     private Rigidbody2D rb;
 
@@ -36,8 +34,7 @@ public class LaserController : MonoBehaviour
 
     private void UpdatePosition()
     {
-        // TODO targetPosition depends on if the player is facing left or right.
-        Vector2 targetPosition = rightHoldPoint.position;
+        Vector2 targetPosition = holdPoint.position;
         rb.MovePosition(targetPosition);
     }
 }
