@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
-        Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
+        //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
     }
 
     private bool HeadingTowardsCurrentDirection()
