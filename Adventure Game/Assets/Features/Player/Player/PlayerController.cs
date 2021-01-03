@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        Debug.LogWarning("Flip!");
+        //Debug.LogWarning("Flip!");
         isFacingRight = !isFacingRight;
 
         transform.Rotate(0f, 180f, 0);
