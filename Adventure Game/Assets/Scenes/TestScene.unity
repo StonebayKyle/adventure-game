@@ -747,6 +747,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1720586211}
+    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: bulletFireForce
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5523418032263606922, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_RootOrder
