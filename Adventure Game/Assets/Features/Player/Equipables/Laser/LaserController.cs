@@ -32,7 +32,11 @@ public class LaserController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shootPressed = Input.GetButtonDown("Fire1");
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //Debug.LogWarning("Fire1 pressed in Update");
+            shootPressed = true;
+        }
     }
 
     private void FixedUpdate()
@@ -40,6 +44,8 @@ public class LaserController : MonoBehaviour
         UpdatePosition();
         if (shootPressed)
         {
+            //Debug.LogWarning("Shoot activated in FixedUpdate");
+            shootPressed = false;
             Shoot();
         }
     }
