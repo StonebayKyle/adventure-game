@@ -7,14 +7,14 @@ public class LaserController : MonoBehaviour
     [Tooltip("The transform point for where the laser should be bound to positionally. This is intended for where the laser would be held from (i.e. hands, pedestal, etc).")]
     public Transform holdPoint;
     [Header("Bullet")]
-    [Tooltip("The transform point for where the laser should shoot from.")]
+    [Tooltip("The transform point for where the laser should fire from.")]
     public Transform firePoint;
-    [Tooltip("The prefab of what the laser should shoot.")]
+    [Tooltip("The prefab of what the laser should fire.")]
     public GameObject bulletPrefab;
     [Tooltip("How much force should be applied to the bullet when the laser is fired.")]
     public float bulletFireForce = 20f;
 
-    private bool shootPressed = false;
+    private bool firePressed = false;
 
     private Rigidbody2D rb;
 
@@ -35,18 +35,18 @@ public class LaserController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             //Debug.LogWarning("Fire1 pressed in Update");
-            shootPressed = true;
+            firePressed = true;
         }
     }
 
     private void FixedUpdate()
     {
         UpdatePosition();
-        if (shootPressed)
+        if (firePressed)
         {
-            //Debug.LogWarning("Shoot activated in FixedUpdate");
-            shootPressed = false;
-            Shoot();
+            //Debug.LogWarning("Fire activated in FixedUpdate");
+            firePressed = false;
+            Fire();
         }
     }
 
@@ -56,7 +56,7 @@ public class LaserController : MonoBehaviour
         rb.MovePosition(targetPosition);
     }
 
-    private void Shoot()
+    private void Fire()
     {
         // code inspired by Brackeys
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
