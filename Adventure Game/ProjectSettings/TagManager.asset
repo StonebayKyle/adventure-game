@@ -59,6 +59,3 @@ TagManager:
   - name: Projectiles
     uniqueID: 2693411995
     locked: 0
-  - name: New Layer
-    uniqueID: 1488697577
-    locked: 0
