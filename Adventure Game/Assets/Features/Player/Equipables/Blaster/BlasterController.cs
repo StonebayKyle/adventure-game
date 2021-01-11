@@ -58,10 +58,15 @@ public class BlasterController : MonoBehaviour
 
     private void Fire()
     {
+        CreateLaser(laserFireForce);
+    }
+
+    private void CreateLaser(float force)
+    {
         // code inspired by Brackeys
         GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D laserRigidbody = laser.GetComponent<Rigidbody2D>();
-        laserRigidbody.AddForce(firePoint.right * laserFireForce, ForceMode2D.Impulse);
+        laserRigidbody.AddForce(firePoint.right * force, ForceMode2D.Impulse);
     }
 
 }
