@@ -13,6 +13,11 @@ public class BlasterController : MonoBehaviour
     public GameObject laserPrefab;
     [Tooltip("How much force should be applied to the laser when the blaster is fired.")]
     public float laserFireForce = 20f;
+    [Header("Recoil Force")]
+    [Tooltip("Optional: The rigidbody that is 'holding' the blaster. This is used to apply a recoil force when the blaster is fired.")]
+    public Rigidbody2D holdingRigidbody;
+    [Tooltip("How much force to apply to the holdingRigidbody.")]
+    public float recoilForce = 20f;
 
     private bool firePressed = false;
 
@@ -59,6 +64,10 @@ public class BlasterController : MonoBehaviour
     private void Fire()
     {
         CreateLaser(laserFireForce);
+        if (holdingRigidbody != null)
+        {
+            ApplyRecoilForce(recoilForce);
+        }
     }
 
     private void CreateLaser(float force)
@@ -67,6 +76,13 @@ public class BlasterController : MonoBehaviour
         GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D laserRigidbody = laser.GetComponent<Rigidbody2D>();
         laserRigidbody.AddForce(firePoint.right * force, ForceMode2D.Impulse);
+    }
+
+    private void ApplyRecoilForce(float force)
+    {
+        Vector2 forceDirection = transform.right * -1;
+        Debug.LogWarning("Force applying: " + forceDirection);
+        holdingRigidbody.AddForce(forceDirection * force, ForceMode2D.Impulse);
     }
 
 }

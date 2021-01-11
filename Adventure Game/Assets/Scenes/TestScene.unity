@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!50 &358627781 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3402348462753552513, guid: 0dca55d461e56fe4ab8cd930b946882d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3402348463931005454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &708892505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,6 +753,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1720586211}
+    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: holdingRigidbody
+      value: 
+      objectReference: {fileID: 358627781}
     - target: {fileID: 5523418032263606922, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_RootOrder
