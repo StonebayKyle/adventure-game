@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5445399413653468402}
   - component: {fileID: 4348120374626499681}
   m_Layer: 8
-  m_Name: Laser
+  m_Name: Blaster
   m_TagString: Equipable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,9 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPoint: {fileID: 0}
   firePoint: {fileID: 4261784841157623100}
-  bulletPrefab: {fileID: 6975337382162663661, guid: 29d5829bf63484048af2a3596ff909a5,
+  laserPrefab: {fileID: 6975337382162663661, guid: 29d5829bf63484048af2a3596ff909a5,
     type: 3}
-  bulletFireForce: 20
+  laserFireForce: 20
 --- !u!114 &4348120374626499681
 MonoBehaviour:
   m_ObjectHideFlags: 0

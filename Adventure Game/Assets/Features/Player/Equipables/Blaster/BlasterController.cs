@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserController : MonoBehaviour
+public class BlasterController : MonoBehaviour
 {
-    [Tooltip("The transform point for where the laser should be bound to positionally. This is intended for where the laser would be held from (i.e. hands, pedestal, etc).")]
+    [Tooltip("The transform point for where the blaster should be bound to positionally. This is intended for where the blaster would be held from (i.e. hands, pedestal, etc).")]
     public Transform holdPoint;
     [Header("Bullet")]
-    [Tooltip("The transform point for where the laser should fire from.")]
+    [Tooltip("The transform point for where the blaster should fire from.")]
     public Transform firePoint;
-    [Tooltip("The prefab of what the laser should fire.")]
-    public GameObject bulletPrefab;
-    [Tooltip("How much force should be applied to the bullet when the laser is fired.")]
-    public float bulletFireForce = 20f;
+    [Tooltip("The prefab of what the blaster should fire.")]
+    public GameObject laserPrefab;
+    [Tooltip("How much force should be applied to the laser when the blaster is fired.")]
+    public float laserFireForce = 20f;
 
     private bool firePressed = false;
 
@@ -59,9 +59,9 @@ public class LaserController : MonoBehaviour
     private void Fire()
     {
         // code inspired by Brackeys
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-        bulletRigidbody.AddForce(firePoint.right * bulletFireForce, ForceMode2D.Impulse);
+        GameObject laser = Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D laserRigidbody = laser.GetComponent<Rigidbody2D>();
+        laserRigidbody.AddForce(firePoint.right * laserFireForce, ForceMode2D.Impulse);
     }
 
 }
