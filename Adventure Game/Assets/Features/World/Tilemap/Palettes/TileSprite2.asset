@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: DefaultTileSprite2
+  m_Name: TileSprite2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 8b84bb24c3d0740c99fcf1c780b36188, type: 3}
-  m_Color: {r: 0.103773594, g: 0.09545213, b: 0.09545213, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 70df64839ea4b4942ac581c1c0a36d2a, type: 3}
+  m_Color: {r: 0.9433962, g: 0.04004982, b: 0.04004982, a: 1}
   m_Transform:
     e00: 1
     e01: 0
