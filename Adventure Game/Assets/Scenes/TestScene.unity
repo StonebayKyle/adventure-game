@@ -310,8 +310,8 @@ GameObject:
   - component: {fileID: 1227971236}
   - component: {fileID: 1227971235}
   m_Layer: 8
-  m_Name: Destructible
-  m_TagString: Destructible
+  m_Name: Destructable
+  m_TagString: Destructable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fdafd9e54bf4581b288625300921ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructableTilemap: {fileID: 2001534870}
+  destructableTilemap: {fileID: 1227971238}
 --- !u!19719996 &1227971236
 TilemapCollider2D:
   m_ObjectHideFlags: 0
