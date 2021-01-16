@@ -11,7 +11,11 @@ public class PhysicsCheck : MonoBehaviour
     [Tooltip("Distance below the object to check for the ground.")]
     [SerializeField]
     private float checkDistance = 1f;
-    [Header("Fall Check")]
+
+    [Header("Vertical Checks")]
+    [Tooltip("Minimum vertical velocity upward(must be positive) for the object to be considered moving upward.")]
+    [SerializeField]
+    private float upwardVelocityThreshold = 0.0001f;
 
     [Tooltip("Minimum vertical velocity downward(must be negative) for the object to be considered falling.")]
     [SerializeField]
@@ -21,6 +25,7 @@ public class PhysicsCheck : MonoBehaviour
     [Tooltip("Minimum horizontal velocity (absolute, must be positive) for the object to be considered moving.")]
     [SerializeField]
     private float moveVelocityThreshold = .001f;
+
 
 
     private void Awake()
@@ -41,6 +46,11 @@ public class PhysicsCheck : MonoBehaviour
     {
         // IsGrounded debug line
         Debug.DrawRay(transform.position, Vector3.down * checkDistance, Color.green);
+    }
+
+    public bool IsMovingUpward()
+    {
+        return rbody.velocity.y > upwardVelocityThreshold;
     }
 
     public bool IsFalling()
