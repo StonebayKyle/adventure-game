@@ -673,6 +673,11 @@ PrefabInstance:
       propertyPath: changeDirectionDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: noInputDecelerationTime
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_RootOrder
@@ -753,6 +758,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1720586211}
+    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: recoilForce
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: holdingRigidbody

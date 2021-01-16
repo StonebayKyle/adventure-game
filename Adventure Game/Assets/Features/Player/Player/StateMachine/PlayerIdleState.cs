@@ -39,7 +39,19 @@ public class PlayerIdleState : IPlayerMovementState
             return;
         }
 
-        if (player.horizontalMovementAxis != 0 || player.IsHorizontallyMoving())
+        if (player.IsMovingUpward())
+        {
+            player.ChangeState(new PlayerUpwardState());
+            return;
+        }
+
+        if (player.NoHorizontalInput())
+        {
+            player.NoInputDecelerate();
+            //Debug.LogWarning("Decelerating!");
+        }
+
+        if (!player.NoHorizontalInput() || player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerRunningState());
             return;

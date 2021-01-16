@@ -35,6 +35,18 @@ public class PlayerRunningState : IPlayerMovementState
             player.ChangeState(new PlayerFallingState());
             return;
         }
+        if (player.IsMovingUpward())
+        {
+            player.ChangeState(new PlayerUpwardState());
+            return;
+        }
+
+        if (player.NoHorizontalInput())
+        {
+            player.NoInputDecelerate();
+            //Debug.LogWarning("Decelerating!");
+        }
+
         if (player.NoHorizontalInput() && !player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerIdleState());

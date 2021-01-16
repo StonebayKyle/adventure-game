@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PlayerJumpingState : IPlayerMovementState
+public class PlayerUpwardState : IPlayerMovementState
 {
     private bool jumpHeld;
     private float initialGravityScale;
 
     public void EnterState(PlayerController player)
     {
-        jumpHeld = true;
-        player.RigidBody.AddForce(new Vector2(0, player.jumpForce * Time.fixedDeltaTime),ForceMode2D.Impulse);
+        jumpHeld = true; // jump set to true initially (even if entered by something other than jump) to ensure the gravity isn't reset the same moment this state is entered, disallowing them from doing a high jump. TODO: Test this
         initialGravityScale = player.RigidBody.gravityScale;
     }
 
@@ -29,7 +30,8 @@ public class PlayerJumpingState : IPlayerMovementState
         {
             // resets gravity back to intital when the player holds jump
             //player.RigidBody.gravityScale = initialGravityScale;
-        } else
+        }
+        else
         {
             // increase gravity so player doesn't jump as high
             player.RigidBody.gravityScale = initialGravityScale * player.lowJumpMultiplier;
@@ -39,15 +41,18 @@ public class PlayerJumpingState : IPlayerMovementState
         {
             player.ChangeState(new PlayerFallingState());
         }
+
+
+        // TODO: set the gravity scale to low-jump or an inbetween value when the laser is fired (and don't let them go back to high-jump)
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
     {
-      
+
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
     {
-        
+
     }
 }

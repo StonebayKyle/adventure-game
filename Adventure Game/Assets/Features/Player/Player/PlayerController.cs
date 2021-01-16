@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
         } else
         {
             // no input decleration to stop
-            NoInputDecelerate();
+            //NoInputDecelerate();
         }
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
     public void StopHorizontalMovement()
     {
         RigidBody.velocity.Set(0, RigidBody.velocity.y);
-        Debug.LogWarning("Stopped!");
+        //Debug.LogWarning("Stopped!");
     }
 
     private void Flip()

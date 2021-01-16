@@ -67,7 +67,7 @@ public class BlasterController : MonoBehaviour
         if (holdingRigidbody != null)
         {
             // TODO: Enable this once it isn't being counteracted by the player's movement behaviour.
-            //ApplyRecoilForce(recoilForce);
+            ApplyRecoilForce(recoilForce);
         }
     }
 

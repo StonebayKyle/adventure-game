@@ -32,7 +32,10 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
-
+        if (player.IsGrounded())
+        {
+            ChangeToGroundState(player);
+        }
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
@@ -44,7 +47,7 @@ public class PlayerFallingState : IPlayerMovementState
                 player.Jump();
                 return;
             }
-            player.ChangeState(new PlayerIdleState());
+            ChangeToGroundState(player);
             return;
         }
     }
@@ -69,6 +72,17 @@ public class PlayerFallingState : IPlayerMovementState
             {
                 jumpPressedRecently = false;
             }
+        }
+    }
+
+    private void ChangeToGroundState(PlayerController player)
+    {
+        if (player.IsHorizontallyMoving())
+        {
+            player.ChangeState(new PlayerRunningState());
+        } else
+        {
+            player.ChangeState(new PlayerIdleState());
         }
     }
 
