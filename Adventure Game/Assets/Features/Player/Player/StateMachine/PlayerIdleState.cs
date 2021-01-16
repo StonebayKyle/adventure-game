@@ -27,7 +27,10 @@ public class PlayerIdleState : IPlayerMovementState
     }
     public void FixedUpdate(PlayerController player)
     {
-        if (jumpPressed) player.ChangeState(new PlayerJumpingState());
+        if (jumpPressed) {
+            player.Jump();
+            return;
+        }
 
         //Debug.Log("Player y velocity: " + player.RigidBody.velocity.y);
         if (player.IsFalling())

@@ -146,11 +146,29 @@ public class PlayerController : MonoBehaviour
         } else
         {
             // no input decleration to stop
-            PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+            NoInputDecelerate();
         }
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
+    }
+
+    // applies jumping force and switches to the upward state
+    public void Jump()
+    {
+        RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        ChangeState(new PlayerUpwardState());
+    }
+
+    public void NoInputDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+    }
+
+    public void StopHorizontalMovement()
+    {
+        RigidBody.velocity.Set(0, RigidBody.velocity.y);
+        Debug.LogWarning("Stopped!");
     }
 
     private void Flip()
@@ -173,6 +191,11 @@ public class PlayerController : MonoBehaviour
             (leftHeld && RigidBody.velocity.x > -maxSpeed);
     }
 
+    public bool IsMovingUpward()
+    {
+        return physicsCheck.IsMovingUpward();
+    }
+
     public bool IsFalling()
     {
         return physicsCheck.IsFalling();
@@ -183,17 +206,24 @@ public class PlayerController : MonoBehaviour
         return physicsCheck.IsGrounded();
     }
 
+    public bool NoHorizontalInput()
+    {
+        return horizontalMovementAxis == 0;
+    }
+
     public bool IsHorizontallyMoving()
     {
         return physicsCheck.IsHorizontallyMoving();
     }
 
+
     // this update (due to how prevHorizontalMovementAxis is assigned)
     public bool ChangedInputMovementDirection()
     {
-        if (horizontalMovementAxis == 0) return false; // no change (in direction) when input stops.
+        if (NoHorizontalInput()) return false; // no change (in direction) when input stops.
 
         return rightHeld != isFacingRight;
     }
+
 
 }

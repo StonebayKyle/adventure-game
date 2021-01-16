@@ -27,7 +27,7 @@ public class PlayerRunningState : IPlayerMovementState
     {
         if (jumpPressed)
         {
-            player.ChangeState(new PlayerJumpingState());
+            player.Jump();
             return;
         }
         if (player.IsFalling())
@@ -35,7 +35,7 @@ public class PlayerRunningState : IPlayerMovementState
             player.ChangeState(new PlayerFallingState());
             return;
         }
-        if (player.horizontalMovementAxis == 0 && !player.IsHorizontallyMoving())
+        if (player.NoHorizontalInput() && !player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerIdleState());
             return;

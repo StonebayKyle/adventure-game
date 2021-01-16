@@ -41,7 +41,7 @@ public class PlayerFallingState : IPlayerMovementState
         {
             if (jumpPressedRecently)
             {
-                player.ChangeState(new PlayerJumpingState());
+                player.Jump();
                 return;
             }
             player.ChangeState(new PlayerIdleState());
