@@ -384,6 +384,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 034a445c933ad0941ba05138fa6b0393, type: 3}
+--- !u!114 &1491386403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3402348462753552515, guid: 0dca55d461e56fe4ab8cd930b946882d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3402348463931005454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a223cdac492094bb7844fe238099b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1705508107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
@@ -761,13 +773,18 @@ PrefabInstance:
     - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: recoilForce
-      value: 50
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: holdingRigidbody
       value: 
       objectReference: {fileID: 358627781}
+    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1491386403}
     - target: {fileID: 5523418032263606922, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_RootOrder
