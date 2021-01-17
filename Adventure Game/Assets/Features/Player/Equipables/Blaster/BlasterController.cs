@@ -82,7 +82,7 @@ public class BlasterController : MonoBehaviour
     private void ApplyRecoilForce(float force)
     {
         Vector2 forceDirection = transform.right * -1;
-        Debug.LogWarning("Force applying: " + forceDirection);
+        //Debug.LogWarning("Force applying: " + forceDirection);
         holdingRigidbody.AddForce(forceDirection * force, ForceMode2D.Impulse);
     }
 
