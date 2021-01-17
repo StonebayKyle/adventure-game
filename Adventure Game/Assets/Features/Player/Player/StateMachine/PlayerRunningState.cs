@@ -63,4 +63,9 @@ public class PlayerRunningState : IPlayerMovementState
     {
         
     }
+
+    public void OnBlasterFire(PlayerController player, BlasterController blaster)
+    {
+        
+    }
 }

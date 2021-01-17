@@ -24,8 +24,11 @@ public class PlayerController : MonoBehaviour
     public bool leftHeld;
     [System.NonSerialized]
     public bool rightHeld;
+    [System.NonSerialized]
+    public bool jumpInitiated; // true when Jump() is called (about to switch into Upward state from a jump), false AFTER the state was entered.
     private bool prevleftHeld;
     private bool prevRightHeld;
+
 
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
@@ -74,7 +77,10 @@ public class PlayerController : MonoBehaviour
 
         physicsCheck = GetComponent<PhysicsCheck>();
 
+        jumpInitiated = false;
+
         stateMachine = new PlayerStateMachine(this);
+
     }
 
 
@@ -107,6 +113,12 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine.OnCollisionExit(collision);
     }
+
+    public void OnBlasterFire(BlasterController blaster)
+    {
+        stateMachine.OnBlasterFire(blaster);
+    }
+
     public void ChangeState(IPlayerMovementState newState)
     {
         stateMachine.ChangeState(newState);
@@ -156,8 +168,10 @@ public class PlayerController : MonoBehaviour
     // applies jumping force and switches to the upward state
     public void Jump()
     {
+        jumpInitiated = true;
         RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
         ChangeState(new PlayerUpwardState());
+        jumpInitiated = false;
     }
 
     public void NoInputDecelerate()
@@ -169,6 +183,11 @@ public class PlayerController : MonoBehaviour
     {
         RigidBody.velocity.Set(0, RigidBody.velocity.y);
         //Debug.LogWarning("Stopped!");
+    }
+
+    public void SetGravityScale(float gravityScale)
+    {
+        RigidBody.gravityScale = gravityScale;
     }
 
     private void Flip()

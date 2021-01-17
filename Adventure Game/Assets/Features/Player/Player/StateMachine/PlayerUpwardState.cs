@@ -6,16 +6,28 @@ public class PlayerUpwardState : IPlayerMovementState
 {
     private bool jumpHeld;
     private float initialGravityScale;
+    private float lowJumpGravityScale;
 
     public void EnterState(PlayerController player)
     {
-        jumpHeld = true; // jump set to true initially (even if entered by something other than jump) to ensure the gravity isn't reset the same moment this state is entered, disallowing them from doing a high jump. TODO: Test this
+        jumpHeld = player.jumpInitiated; // this is true on Enter when the player jumped into UpwardState.
+
+        //Debug.LogWarning("jumpHeld: " + jumpHeld);
         initialGravityScale = player.RigidBody.gravityScale;
+        lowJumpGravityScale = initialGravityScale * player.lowJumpMultiplier;
+
+        if (!player.jumpInitiated)
+        {
+            //Debug.LogWarning("Grav to low jump on ENTER");
+            // sets gravity to low-jump whenever upward is entered by anything but a jump, as a "high-jump" should only be allowed during an actual jump.
+            player.SetGravityScale(lowJumpGravityScale);
+        }
     }
 
     public void ExitState(PlayerController player)
     {
-        player.RigidBody.gravityScale = initialGravityScale;
+        // resets gravity scale.
+        player.SetGravityScale(initialGravityScale);
     }
 
     public void Update(PlayerController player)
@@ -26,16 +38,13 @@ public class PlayerUpwardState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
-        if (jumpHeld)
+        if (!jumpHeld)
         {
-            // resets gravity back to intital when the player holds jump
-            //player.RigidBody.gravityScale = initialGravityScale;
+            // increase gravity so player doesn't jump as high when the jump button is released 
+            player.SetGravityScale(lowJumpGravityScale);
         }
-        else
-        {
-            // increase gravity so player doesn't jump as high
-            player.RigidBody.gravityScale = initialGravityScale * player.lowJumpMultiplier;
-        }
+
+        //Debug.LogWarning("Current Gravity Scale: " + player.RigidBody.gravityScale);
 
         if (player.IsFalling())
         {
@@ -44,6 +53,7 @@ public class PlayerUpwardState : IPlayerMovementState
 
 
         // TODO: set the gravity scale to low-jump or an inbetween value when the laser is fired (and don't let them go back to high-jump)
+
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
@@ -54,5 +64,12 @@ public class PlayerUpwardState : IPlayerMovementState
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
     {
 
+    }
+
+    public void OnBlasterFire(PlayerController player, BlasterController blaster)
+    {
+        //Debug.LogWarning("Blaster fire detected!");
+        // increase gravity to low-jump gravity so the player can't launch themselves with the blaster and also high-jump
+        player.SetGravityScale(lowJumpGravityScale);
     }
 }

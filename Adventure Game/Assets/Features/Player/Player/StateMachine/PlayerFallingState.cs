@@ -32,9 +32,16 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        if (player.IsMovingUpward())
+        {
+            player.ChangeState(new PlayerUpwardState());
+            return;
+        }
+
         if (player.IsGrounded())
         {
             ChangeToGroundState(player);
+            return;
         }
     }
 
@@ -86,4 +93,8 @@ public class PlayerFallingState : IPlayerMovementState
         }
     }
 
+    public void OnBlasterFire(PlayerController player, BlasterController blaster)
+    {
+        
+    }
 }

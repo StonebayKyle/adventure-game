@@ -32,4 +32,9 @@ public interface IPlayerMovementState
     /// </summary>
     void OnCollisionExit2D(PlayerController player, Collision2D collision);
 
+
+    /// <summary>
+    /// Called every time the player's blaster is fired.
+    /// </summary>
+    void OnBlasterFire(PlayerController player, BlasterController blaster);
 }
