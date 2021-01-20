@@ -42,8 +42,10 @@ public class PhysicsUtils
     {
         float xVelocity = 0.0f;
         
+        float currentVelocity = rigidbody.velocity.x;
+
         // calculate the target velocity for a single run through this method, which is smoothed.
-        float smoothedVelocity = Mathf.SmoothDamp(rigidbody.velocity.x, targetVelocity, ref xVelocity, accelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
+        float smoothedVelocity = Mathf.SmoothDamp(currentVelocity, targetVelocity, ref xVelocity, accelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
 
         //rigidbody.velocity = new Vector2(smoothedVelocity, rigidbody.velocity.y);
         // difMath = velNow - velBefore
@@ -51,7 +53,7 @@ public class PhysicsUtils
 
         // F = m(dv/dt)
         Vector2 force = new Vector2(rigidbody.mass * 
-            ((smoothedVelocity - rigidbody.velocity.x)/Time.fixedDeltaTime)
+            ((smoothedVelocity - currentVelocity)/Time.fixedDeltaTime)
             , 0);
         rigidbody.AddForce(force);
     }
