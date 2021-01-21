@@ -7,6 +7,8 @@ TagManager:
   - Virtual Camera
   - Equipable
   - Environment
+  - Destructible
+  - Destructable
   layers:
   - Default
   - TransparentFX
