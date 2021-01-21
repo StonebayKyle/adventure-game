@@ -4,6 +4,7 @@
 public class PlayerStateMachine
 {
     private IPlayerMovementState currentState;
+
     private PlayerController player;
 
     // TODO make a list of static states that have no attributes to easily reuse for performance (only works without attributes since values would be object-based)
@@ -18,12 +19,12 @@ public class PlayerStateMachine
         if (currentState != null)
         {
             currentState.ExitState(player);
-            Debug.Log("Player exited [" + currentState + "] state");
+            Debug.Log("Player exited [" + currentState + "]");
         }
 
         currentState = newState;
         currentState.EnterState(player);
-        Debug.Log("Player entered [" + currentState + "] state");
+        Debug.Log("Player entered [" + currentState + "]");
     }
 
     public void Update()

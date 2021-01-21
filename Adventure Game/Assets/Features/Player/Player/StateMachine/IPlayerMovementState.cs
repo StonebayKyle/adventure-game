@@ -13,7 +13,7 @@ public interface IPlayerMovementState
     void ExitState(PlayerController player);
 
     /// <summary>
-    /// Called every Update. Use to detect inputs & do frame-based actions
+    /// Called every Update. Use to detect inputs and do frame-based actions
     /// </summary>
     void Update(PlayerController player);
 
@@ -23,7 +23,7 @@ public interface IPlayerMovementState
     void FixedUpdate(PlayerController player);
 
     /// <summary>
-    /// Called every time player collides with a collider
+    /// Called every time player enters a collision
     /// </summary>
     void OnCollisionEnter2D(PlayerController player, Collision2D collision);
 
