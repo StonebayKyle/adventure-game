@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3402348462753552514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children:
   - {fileID: 5523418032263606922}
   - {fileID: 6888281382407722347}
@@ -107,7 +107,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3402348462753552512
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,14 +125,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10, y: 10}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &3402348462753552515
 MonoBehaviour:
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8287853039889414488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3402348462753552543}
@@ -279,13 +279,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
+      propertyPath: laserFireForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
+        type: 3}
       propertyPath: rightHoldPoint
       value: 
       objectReference: {fileID: 6888281382407722347}
+    - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
+        type: 3}
+      propertyPath: holdingRigidbody
+      value: 
+      objectReference: {fileID: 3402348462753552513}
+    - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 3402348462753552515}
     - target: {fileID: 6371961919709273728, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
       propertyPath: m_Name
-      value: Laser
+      value: Blaster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b68234b39800545a02ecd5693111fa, type: 3}
