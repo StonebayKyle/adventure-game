@@ -24,8 +24,11 @@ public class PlayerController : MonoBehaviour
     public bool leftHeld;
     [System.NonSerialized]
     public bool rightHeld;
+    [System.NonSerialized]
+    public bool jumpInitiated; // true when Jump() is called (about to switch into Upward state from a jump), false AFTER the state was entered.
     private bool prevleftHeld;
     private bool prevRightHeld;
+
 
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
@@ -74,7 +77,10 @@ public class PlayerController : MonoBehaviour
 
         physicsCheck = GetComponent<PhysicsCheck>();
 
+        jumpInitiated = false;
+
         stateMachine = new PlayerStateMachine(this);
+
     }
 
 
@@ -107,6 +113,12 @@ public class PlayerController : MonoBehaviour
     {
         stateMachine.OnCollisionExit(collision);
     }
+
+    public void OnBlasterFire(BlasterController blaster)
+    {
+        stateMachine.OnBlasterFire(blaster);
+    }
+
     public void ChangeState(IPlayerMovementState newState)
     {
         stateMachine.ChangeState(newState);
@@ -146,11 +158,36 @@ public class PlayerController : MonoBehaviour
         } else
         {
             // no input decleration to stop
-            PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+            //NoInputDecelerate();
         }
 
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
         //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
+    }
+
+    // applies jumping force and switches to the upward state
+    public void Jump()
+    {
+        jumpInitiated = true;
+        RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        ChangeState(new PlayerUpwardState());
+        jumpInitiated = false;
+    }
+
+    public void NoInputDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+    }
+
+    public void StopHorizontalMovement()
+    {
+        RigidBody.velocity.Set(0, RigidBody.velocity.y);
+        //Debug.LogWarning("Stopped!");
+    }
+
+    public void SetGravityScale(float gravityScale)
+    {
+        RigidBody.gravityScale = gravityScale;
     }
 
     private void Flip()
@@ -173,6 +210,11 @@ public class PlayerController : MonoBehaviour
             (leftHeld && RigidBody.velocity.x > -maxSpeed);
     }
 
+    public bool IsMovingUpward()
+    {
+        return physicsCheck.IsMovingUpward();
+    }
+
     public bool IsFalling()
     {
         return physicsCheck.IsFalling();
@@ -183,17 +225,24 @@ public class PlayerController : MonoBehaviour
         return physicsCheck.IsGrounded();
     }
 
+    public bool NoHorizontalInput()
+    {
+        return horizontalMovementAxis == 0;
+    }
+
     public bool IsHorizontallyMoving()
     {
         return physicsCheck.IsHorizontallyMoving();
     }
 
+
     // this update (due to how prevHorizontalMovementAxis is assigned)
     public bool ChangedInputMovementDirection()
     {
-        if (horizontalMovementAxis == 0) return false; // no change (in direction) when input stops.
+        if (NoHorizontalInput()) return false; // no change (in direction) when input stops.
 
         return rightHeld != isFacingRight;
     }
+
 
 }
