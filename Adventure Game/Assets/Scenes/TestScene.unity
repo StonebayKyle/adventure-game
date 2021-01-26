@@ -438,7 +438,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -683,6 +683,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3718914348605551954, guid: 034a445c933ad0941ba05138fa6b0393,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3718914348605551954, guid: 034a445c933ad0941ba05138fa6b0393,
+        type: 3}
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
@@ -864,15 +869,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player VCam
       objectReference: {fileID: 0}
-    - target: {fileID: 3891726402792111181, guid: 95ba470b467676e43a03ee9689271151,
-        type: 3}
-      propertyPath: m_TagString
-      value: Virtual Camera
-      objectReference: {fileID: 0}
     - target: {fileID: 4034535073659081248, guid: 95ba470b467676e43a03ee9689271151,
         type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1705508107}
+    - target: {fileID: 4034535073659081248, guid: 95ba470b467676e43a03ee9689271151,
+        type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95ba470b467676e43a03ee9689271151, type: 3}
