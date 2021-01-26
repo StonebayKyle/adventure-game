@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6297736451909856218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4711518879935431274}
@@ -152,9 +152,10 @@ MonoBehaviour:
   firePoint: {fileID: 4261784841157623100}
   laserPrefab: {fileID: 6975337382162663661, guid: 29d5829bf63484048af2a3596ff909a5,
     type: 3}
-  laserFireForce: 20
+  laserFireForce: 2
   holdingRigidbody: {fileID: 0}
-  recoilForce: 50
+  recoilForce: 80
+  playerController: {fileID: 0}
 --- !u!114 &4348120374626499681
 MonoBehaviour:
   m_ObjectHideFlags: 0

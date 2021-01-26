@@ -27,7 +27,7 @@ public class PlayerRunningState : IPlayerMovementState
     {
         if (jumpPressed)
         {
-            player.ChangeState(new PlayerJumpingState());
+            player.Jump();
             return;
         }
         if (player.IsFalling())
@@ -35,7 +35,19 @@ public class PlayerRunningState : IPlayerMovementState
             player.ChangeState(new PlayerFallingState());
             return;
         }
-        if (player.horizontalMovementAxis == 0 && !player.IsHorizontallyMoving())
+        if (player.IsMovingUpward())
+        {
+            player.ChangeState(new PlayerUpwardState());
+            return;
+        }
+
+        if (player.NoHorizontalInput())
+        {
+            player.NoInputDecelerate();
+            //Debug.LogWarning("Decelerating!");
+        }
+
+        if (player.NoHorizontalInput() && !player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerIdleState());
             return;
@@ -48,6 +60,11 @@ public class PlayerRunningState : IPlayerMovementState
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
+    {
+        
+    }
+
+    public void OnBlasterFire(PlayerController player, BlasterController blaster)
     {
         
     }

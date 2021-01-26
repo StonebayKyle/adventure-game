@@ -27,7 +27,10 @@ public class PlayerIdleState : IPlayerMovementState
     }
     public void FixedUpdate(PlayerController player)
     {
-        if (jumpPressed) player.ChangeState(new PlayerJumpingState());
+        if (jumpPressed) {
+            player.Jump();
+            return;
+        }
 
         //Debug.Log("Player y velocity: " + player.RigidBody.velocity.y);
         if (player.IsFalling())
@@ -36,7 +39,19 @@ public class PlayerIdleState : IPlayerMovementState
             return;
         }
 
-        if (player.horizontalMovementAxis != 0 || player.IsHorizontallyMoving())
+        if (player.IsMovingUpward())
+        {
+            player.ChangeState(new PlayerUpwardState());
+            return;
+        }
+
+        if (player.NoHorizontalInput())
+        {
+            player.NoInputDecelerate();
+            //Debug.LogWarning("Decelerating!");
+        }
+
+        if (!player.NoHorizontalInput() || player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerRunningState());
             return;
@@ -49,6 +64,11 @@ public class PlayerIdleState : IPlayerMovementState
     }
 
     public void OnCollisionExit2D(PlayerController player, Collision2D collision)
+    {
+        
+    }
+
+    public void OnBlasterFire(PlayerController player, BlasterController blaster)
     {
         
     }

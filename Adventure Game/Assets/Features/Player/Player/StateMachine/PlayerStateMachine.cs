@@ -46,4 +46,9 @@ public class PlayerStateMachine
     {
         if (currentState != null) currentState.OnCollisionExit2D(player, collision);
     }
+
+    public void OnBlasterFire(BlasterController blaster)
+    {
+        if (currentState != null) currentState.OnBlasterFire(player, blaster);
+    }
 }

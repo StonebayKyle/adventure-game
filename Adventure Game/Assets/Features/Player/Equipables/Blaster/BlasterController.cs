@@ -18,6 +18,9 @@ public class BlasterController : MonoBehaviour
     public Rigidbody2D holdingRigidbody;
     [Tooltip("How much force to apply to the holdingRigidbody.")]
     public float recoilForce = 20f;
+    [Header("Player")]
+    [Tooltip("Optional: The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
+    public PlayerController playerController;
 
     private bool firePressed = false;
 
@@ -67,7 +70,14 @@ public class BlasterController : MonoBehaviour
         if (holdingRigidbody != null)
         {
             // TODO: Enable this once it isn't being counteracted by the player's movement behaviour.
-            //ApplyRecoilForce(recoilForce);
+            ApplyRecoilForce(recoilForce);
+        }
+
+        // if there is a playerController to send the fire signal to
+        if (playerController != null)
+        {
+            // send the signal
+            playerController.OnBlasterFire(this);
         }
     }
 
@@ -82,7 +92,7 @@ public class BlasterController : MonoBehaviour
     private void ApplyRecoilForce(float force)
     {
         Vector2 forceDirection = transform.right * -1;
-        Debug.LogWarning("Force applying: " + forceDirection);
+        //Debug.LogWarning("Force applying: " + forceDirection);
         holdingRigidbody.AddForce(forceDirection * force, ForceMode2D.Impulse);
     }
 
