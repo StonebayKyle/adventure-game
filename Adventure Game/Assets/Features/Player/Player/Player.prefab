@@ -172,7 +172,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   checkDistance: 0.55
-  upwardVelocityThreshold: 0.0001
+  sideCheckOffset: 0
+  upwardVelocityThreshold: 0.001
   fallVelocityThreshold: -0.0001
   moveVelocityThreshold: 1
 --- !u!1 &8287853039889414488
