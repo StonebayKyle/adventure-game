@@ -11,6 +11,12 @@ public class PhysicsCheck : MonoBehaviour
     [Tooltip("Distance below the object to check for the ground.")]
     [SerializeField]
     private float checkDistance = 1f;
+    [SerializeField]
+    [Tooltip("Offset for how far away from the left/right sides should the side rays be drawn and checked. A positive number means away from the center of the object, while a negative number means towards the center of the object.")]
+    private float sideCheckOffset = 0f;
+    private static Vector3 centerGroundRayOrigin;
+    private static Vector3 leftGroundRayOrigin;
+    private static Vector3 rightGroundRayOrigin;
 
     [Header("Vertical Checks")]
     [Tooltip("Minimum vertical velocity upward(must be positive) for the object to be considered moving upward.")]
@@ -27,7 +33,6 @@ public class PhysicsCheck : MonoBehaviour
     private float moveVelocityThreshold = .001f;
 
 
-
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -38,14 +43,32 @@ public class PhysicsCheck : MonoBehaviour
         if (!IsFalling()) return true;
 
         // TODO make this use colliders
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, checkDistance, groundLayer);
-        return hit.collider != null;
+        RaycastHit2D[] hits = new RaycastHit2D[3];
+
+        // TODO there is a better way to scale this
+        hits[0] = Physics2D.Raycast(centerGroundRayOrigin, Vector2.down, checkDistance, groundLayer);
+        if (hits[0].collider != null) return true;
+        hits[1] = Physics2D.Raycast(leftGroundRayOrigin, Vector2.down, checkDistance, groundLayer);
+        if (hits[1].collider != null) return true;
+        hits[2] = Physics2D.Raycast(rightGroundRayOrigin, Vector2.down, checkDistance, groundLayer);
+        if (hits[2].collider != null) return true;
+
+        return false;
     }
 
     private void Update()
     {
-        // IsGrounded debug line
-        Debug.DrawRay(transform.position, Vector3.down * checkDistance, Color.green);
+        // IsGrounded debug lines
+        Debug.DrawRay(centerGroundRayOrigin, Vector3.down * checkDistance, Color.green);
+        Debug.DrawRay(leftGroundRayOrigin, Vector3.down * checkDistance, Color.green);
+        Debug.DrawRay(rightGroundRayOrigin, Vector3.down * checkDistance, Color.green);
+    }
+
+    private void FixedUpdate()
+    {
+        centerGroundRayOrigin = transform.position;
+        leftGroundRayOrigin = centerGroundRayOrigin + (Vector3.left * (transform.localScale.x/2 + sideCheckOffset));
+        rightGroundRayOrigin = centerGroundRayOrigin + (Vector3.right * (transform.localScale.x/2 + sideCheckOffset));
     }
 
     public bool IsMovingUpward()
