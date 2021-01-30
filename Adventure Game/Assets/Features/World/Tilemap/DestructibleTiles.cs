@@ -9,9 +9,6 @@ public class DestructibleTiles : MonoBehaviour
 
     private Vector3 hitPosition;
 
-    private Vector3 origin;
-    private Vector3 direction;
-
     public void Start()
     {
         destructibleTilemap = GetComponent<Tilemap>();
@@ -19,13 +16,8 @@ public class DestructibleTiles : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.LogWarning("Collision");
+        //Debug.LogWarning("Collision");
         //HandleDestruction(collision);
-    }
-
-    private void Update()
-    {
-        //Debug.DrawRay(origin, direction, Color.blue, 4f);
     }
 
     private void HandleDestruction(Collision2D collision)
