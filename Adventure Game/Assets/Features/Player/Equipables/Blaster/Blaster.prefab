@@ -152,9 +152,9 @@ MonoBehaviour:
   firePoint: {fileID: 4261784841157623100}
   laserPrefab: {fileID: 6975337382162663661, guid: 29d5829bf63484048af2a3596ff909a5,
     type: 3}
-  laserFireForce: 2
+  laserFireForce: 20
   holdingRigidbody: {fileID: 0}
-  recoilForce: 80
+  recoilForce: 16
   playerController: {fileID: 0}
 --- !u!114 &4348120374626499681
 MonoBehaviour:
