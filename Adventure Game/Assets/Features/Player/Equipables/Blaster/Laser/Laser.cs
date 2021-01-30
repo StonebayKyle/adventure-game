@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class Laser : MonoBehaviour
 {
     [Tooltip("How far the explosion destroys destructible tiles from the collision point.")]
-    public int explosionRadius = 3;
+    public int destructionRadius = 3;
 
     private Grid grid;
     private Tilemap destructibleTilemap;
@@ -50,7 +50,7 @@ public class Laser : MonoBehaviour
             //Debug.LogWarning("HitPosition: " + hitPosition);
             Vector3Int tilePosition = destructibleTilemap.WorldToCell(hitPosition);
             //Debug.LogWarning("tilePosition: " + tilePosition);
-            ExplodeNearbyCells(tilePosition, explosionRadius);
+            ExplodeNearbyCells(tilePosition, destructionRadius);
         }
     }
 
