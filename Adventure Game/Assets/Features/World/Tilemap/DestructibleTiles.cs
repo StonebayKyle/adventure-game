@@ -9,9 +9,14 @@ public class DestructibleTiles : MonoBehaviour
 
     private Vector3 hitPosition;
 
-    public void Start()
+    public void Awake()
     {
         destructibleTilemap = GetComponent<Tilemap>();
+    }
+
+    public void Start()
+    {
+        
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
