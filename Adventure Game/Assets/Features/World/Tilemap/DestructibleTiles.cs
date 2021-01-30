@@ -5,7 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class DestructibleTiles : MonoBehaviour
 {
-    public Tilemap destructibleTilemap;
+    private Tilemap destructibleTilemap;
+
+    private Vector3 hitPosition;
+
+    private Vector3 origin;
+    private Vector3 direction;
 
     public void Start()
     {
@@ -14,15 +19,44 @@ public class DestructibleTiles : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        Debug.LogWarning("Collision");
+        //HandleDestruction(collision);
+    }
+
+    private void Update()
+    {
+        //Debug.DrawRay(origin, direction, Color.blue, 4f);
+    }
+
+    private void HandleDestruction(Collision2D collision)
+    {
+        //collision.gameObject.transform.rotation
+        if (collision.gameObject.CompareTag("DestroyingProjectile"))
         {
-            Vector3 hitPosition = Vector2.zero;
-            foreach(ContactPoint2D hit in collision.contacts)
+            //direction = collision.gameObject.transform.rotation.eulerAngles;
+            //origin = collision.gameObject.transform.position;
+            //RaycastHit2D hit = Physics2D.Raycast(origin, direction, 1f);
+            
+            //if (hit)
+            //{
+                
+            //}
+
+            foreach (ContactPoint2D contactHit in collision.contacts)
             {
-                hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
-                hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
+                //Debug.LogWarning("hitPosition: " + hitPosition + "\tContactHit: " + contactHit.point + "\tNormal: " + contactHit.normal);
+                hitPosition.x = contactHit.point.x + 0.01f * contactHit.normal.x;
+                hitPosition.y = contactHit.point.y + 0.01f * contactHit.normal.y;
+                
                 destructibleTilemap.SetTile(destructibleTilemap.WorldToCell(hitPosition), null);
             }
         }
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(hitPosition, .2f);
+        //Gizmos.DrawRay(origin, direction);
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Equipable
   - Environment
   - Destructible
+  - DestroyingProjectile
   layers:
   - Default
   - TransparentFX
