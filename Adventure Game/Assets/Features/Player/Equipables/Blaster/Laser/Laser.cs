@@ -8,6 +8,9 @@ public class Laser : MonoBehaviour
     [Tooltip("How far the explosion destroys destructible tiles from the collision point.")]
     public int destructionRadius = 3;
 
+    [Tooltip("How much time, in seconds, it takes for the Laser to destroy itself after creation. The player isn't meant to notice this, as it is just an optimization for reducing active objects (think: despawning).")]
+    public float lifetime = 10f;
+
     private Grid grid;
     private Tilemap destructibleTilemap;
 
@@ -22,7 +25,7 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
-
+        Destroy(gameObject, lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
