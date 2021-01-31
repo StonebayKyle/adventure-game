@@ -45,6 +45,7 @@ public class BlasterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stateMachine.Update();
         if (Input.GetButtonDown("Fire1"))
         {
             //Debug.LogWarning("Fire1 pressed in Update");
@@ -55,6 +56,7 @@ public class BlasterController : MonoBehaviour
     private void FixedUpdate()
     {
         UpdatePosition();
+        stateMachine.FixedUpdate();
         if (firePressed)
         {
             //Debug.LogWarning("Fire activated in FixedUpdate");
@@ -78,6 +80,7 @@ public class BlasterController : MonoBehaviour
             ApplyRecoilForce(recoilForce);
         }
 
+        stateMachine.OnBlasterFire(this);
         // if there is a playerController to send the fire signal to
         if (playerController != null)
         {
