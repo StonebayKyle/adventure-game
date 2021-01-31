@@ -6,7 +6,7 @@ public class BlasterReloadState : IBlasterState
 {
     public void EnterState(BlasterController blaster)
     {
-        
+
     }
 
     public void ExitState(BlasterController blaster)
@@ -16,11 +16,14 @@ public class BlasterReloadState : IBlasterState
 
     public void Update(BlasterController blaster)
     {
-        
     }
 
     public void FixedUpdate(BlasterController blaster)
     {
+        if (!blaster.BlasterFiredInAir)
+        {
+            blaster.ChangeState(new BlasterReadyState());
+        }
         
     }
 

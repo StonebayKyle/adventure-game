@@ -26,6 +26,17 @@ public class BlasterController : MonoBehaviour
 
     private BlasterStateMachine stateMachine;
 
+    public bool BlasterFiredInAir
+    {
+        get
+        {
+            // it's probably not a good idea to rely on the playerController for this
+            return playerController.blasterFiredInAir;
+        }
+    }
+
+
+
     private bool firePressed = false;
 
 
@@ -46,23 +57,12 @@ public class BlasterController : MonoBehaviour
     void Update()
     {
         stateMachine.Update();
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //Debug.LogWarning("Fire1 pressed in Update");
-            firePressed = true;
-        }
     }
 
     private void FixedUpdate()
     {
         UpdatePosition();
         stateMachine.FixedUpdate();
-        if (firePressed)
-        {
-            //Debug.LogWarning("Fire activated in FixedUpdate");
-            firePressed = false;
-            Fire();
-        }
     }
 
     private void UpdatePosition()
@@ -71,7 +71,7 @@ public class BlasterController : MonoBehaviour
         rb.MovePosition(targetPosition);
     }
 
-    private void Fire()
+    public void Fire()
     {
         CreateLaser(laserFireForce);
         if (holdingRigidbody != null)
