@@ -22,19 +22,24 @@ public class BlasterController : MonoBehaviour
     [Tooltip("Optional: The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
     public PlayerController playerController;
 
+    private Rigidbody2D rb;
+
+    private BlasterStateMachine stateMachine;
+
     private bool firePressed = false;
 
-    private Rigidbody2D rb;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        stateMachine = new BlasterStateMachine(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        stateMachine.ChangeState(new BlasterReadyState());
     }
 
     // Update is called once per frame
