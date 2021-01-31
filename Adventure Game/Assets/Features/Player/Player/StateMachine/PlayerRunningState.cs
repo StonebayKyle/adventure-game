@@ -43,7 +43,7 @@ public class PlayerRunningState : IPlayerMovementState
 
         if (player.NoHorizontalInput())
         {
-            player.NoInputDecelerate();
+            player.NoInputGroundDecelerate();
             //Debug.LogWarning("Decelerating!");
         }
 

@@ -47,7 +47,7 @@ public class PlayerIdleState : IPlayerMovementState
 
         if (player.NoHorizontalInput())
         {
-            player.NoInputDecelerate();
+            player.NoInputGroundDecelerate();
             //Debug.LogWarning("Decelerating!");
         }
 

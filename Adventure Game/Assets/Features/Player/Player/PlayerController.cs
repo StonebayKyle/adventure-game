@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
     public float accelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction. This number is effectively half  because it targets the opposite max speed.")]
     public float oppositeInputDecelerationTime = 1f;
-    [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
-    public float noInputDecelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while on the ground.")]
+    public float noInputGroundDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while in the air.")]
     public float noInputAirDecelerationTime = 1f;
 
@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour
                 PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, accelerationTimeMultiplier);
             } else if (!HeadingTowardsCurrentDirection())
             {
+                // TODO change deceleration strength depending on if on ground or in air.
                 // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
                 PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime, decelerationTimeMultiplier);
             }
@@ -178,9 +179,9 @@ public class PlayerController : MonoBehaviour
         jumpInitiated = false;
     }
 
-    public void NoInputDecelerate()
+    public void NoInputGroundDecelerate()
     {
-        PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+        PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputGroundDecelerationTime, decelerationTimeMultiplier);
     }
 
     public void NoInputAirDecelerate()
