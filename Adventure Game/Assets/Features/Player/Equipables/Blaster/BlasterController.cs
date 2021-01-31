@@ -35,11 +35,6 @@ public class BlasterController : MonoBehaviour
         }
     }
 
-
-
-    private bool firePressed = false;
-
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
