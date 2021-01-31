@@ -32,6 +32,8 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.AirInputMove();
+
         if (player.IsMovingUpward())
         {
             player.ChangeState(new PlayerUpwardState());
@@ -42,6 +44,11 @@ public class PlayerFallingState : IPlayerMovementState
         {
             ChangeToGroundState(player);
             return;
+        }
+
+        if (!player.blasterFiredInAir && player.NoHorizontalInput())
+        {
+            player.NoInputAirDecelerate();
         }
     }
 
@@ -84,6 +91,7 @@ public class PlayerFallingState : IPlayerMovementState
 
     private void ChangeToGroundState(PlayerController player)
     {
+        player.blasterFiredInAir = false;
         if (player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerRunningState());
@@ -95,6 +103,6 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void OnBlasterFire(PlayerController player, BlasterController blaster)
     {
-        
+        player.blasterFiredInAir = true;
     }
 }

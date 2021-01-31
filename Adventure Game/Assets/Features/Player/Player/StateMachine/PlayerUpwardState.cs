@@ -11,6 +11,7 @@ public class PlayerUpwardState : IPlayerMovementState
     public void EnterState(PlayerController player)
     {
         jumpHeld = player.jumpInitiated; // this is true on Enter when the player jumped into UpwardState.
+        player.blasterFiredInAir = !jumpHeld; // if upward entered by anything other than jump, assume it was blaster.
 
         //Debug.LogWarning("jumpHeld: " + jumpHeld);
         initialGravityScale = player.RigidBody.gravityScale;
@@ -38,10 +39,18 @@ public class PlayerUpwardState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.AirInputMove();
+
         if (!jumpHeld)
         {
             // increase gravity so player doesn't jump as high when the jump button is released 
             player.SetGravityScale(lowJumpGravityScale);
+        }
+
+        if (!player.blasterFiredInAir && player.NoHorizontalInput())
+        {
+            // have no input deceleration if the player hasn't fired blaster while in air (and isn't inputting).
+            player.NoInputAirDecelerate();
         }
 
         //Debug.LogWarning("Current Gravity Scale: " + player.RigidBody.gravityScale);
@@ -68,6 +77,7 @@ public class PlayerUpwardState : IPlayerMovementState
 
     public void OnBlasterFire(PlayerController player, BlasterController blaster)
     {
+        player.blasterFiredInAir = true;
         //Debug.LogWarning("Blaster fire detected!");
         // increase gravity to low-jump gravity so the player can't launch themselves with the blaster and also high-jump
         player.SetGravityScale(lowJumpGravityScale);
