@@ -150,6 +150,7 @@ MonoBehaviour:
   accelerationTime: 0.025
   oppositeInputDecelerationTime: 0.025
   noInputDecelerationTime: 0.025
+  noInputAirDecelerationTime: 0.1
   accelerationTimeMultiplier: 1
   decelerationTimeMultiplier: 1
   jumpForce: 480

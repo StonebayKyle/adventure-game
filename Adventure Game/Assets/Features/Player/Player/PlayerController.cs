@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public bool rightHeld;
     [System.NonSerialized]
     public bool jumpInitiated; // true when Jump() is called (about to switch into Upward state from a jump), false AFTER the state was entered.
+    [System.NonSerialized]
+    public bool blasterFiredInAir; // true after blaster was fired to enter upward state, or after fired while in upward or falling states. Reset to false on hitting the ground.
     private bool prevleftHeld;
     private bool prevRightHeld;
 
@@ -39,6 +41,8 @@ public class PlayerController : MonoBehaviour
     public float oppositeInputDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input.")]
     public float noInputDecelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while in the air.")]
+    public float noInputAirDecelerationTime = 1f;
 
     // these values can represent a "kind" of friction
     [Tooltip("Multiplier for acceleration time. 0 means no acceleration, 1 means normal acceleration. 0-1 means reduced time, 1+ means increased time.")]
@@ -177,6 +181,11 @@ public class PlayerController : MonoBehaviour
     public void NoInputDecelerate()
     {
         PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputDecelerationTime, decelerationTimeMultiplier);
+    }
+
+    public void NoInputAirDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputAirDecelerationTime, decelerationTimeMultiplier);
     }
 
     public void StopHorizontalMovement()

@@ -43,6 +43,11 @@ public class PlayerFallingState : IPlayerMovementState
             ChangeToGroundState(player);
             return;
         }
+
+        if (!player.blasterFiredInAir && player.NoHorizontalInput())
+        {
+            player.NoInputAirDecelerate();
+        }
     }
 
     public void OnCollisionEnter2D(PlayerController player, Collision2D collision)
@@ -84,6 +89,7 @@ public class PlayerFallingState : IPlayerMovementState
 
     private void ChangeToGroundState(PlayerController player)
     {
+        player.blasterFiredInAir = false;
         if (player.IsHorizontallyMoving())
         {
             player.ChangeState(new PlayerRunningState());
@@ -95,6 +101,6 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void OnBlasterFire(PlayerController player, BlasterController blaster)
     {
-        
+        player.blasterFiredInAir = true;
     }
 }
