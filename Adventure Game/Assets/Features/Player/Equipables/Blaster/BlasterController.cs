@@ -76,7 +76,6 @@ public class BlasterController : MonoBehaviour
         CreateLaser(laserFireForce);
         if (holdingRigidbody != null)
         {
-            // TODO: Enable this once it isn't being counteracted by the player's movement behaviour.
             ApplyRecoilForce(recoilForce);
         }
 
