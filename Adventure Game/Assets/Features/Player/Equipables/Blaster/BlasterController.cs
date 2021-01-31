@@ -103,5 +103,9 @@ public class BlasterController : MonoBehaviour
         holdingRigidbody.AddForce(forceDirection * force, ForceMode2D.Impulse);
     }
 
+    public void ChangeState(IBlasterState newState)
+    {
+        stateMachine.ChangeState(newState);
+    }
 }
 
