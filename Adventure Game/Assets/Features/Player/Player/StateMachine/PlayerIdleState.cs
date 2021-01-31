@@ -27,6 +27,8 @@ public class PlayerIdleState : IPlayerMovementState
     }
     public void FixedUpdate(PlayerController player)
     {
+        player.GroundInputMove();
+
         if (jumpPressed) {
             player.Jump();
             return;

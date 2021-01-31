@@ -38,15 +38,24 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed = 5f;
     private float targetVelocity; // maxSpeed * horizontalMovementAxis, used as a directional target velocity for current movement.
 
-    [Tooltip("How much time it takes to reach max speed horizontally.")]
-    public float accelerationTime = 1f;
-    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction. This number is effectively half  because it targets the opposite max speed.")]
-    public float oppositeInputDecelerationTime = 1f;
+
+    [Header("Ground", order = 1)]
+    [Tooltip("How much time it takes to reach max speed horizontally while on the ground.")]
+    public float groundAccelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction while on the ground. This number is effectively half  because it targets the opposite max speed.")]
+    public float oppositeInputGroundDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while on the ground.")]
     public float noInputGroundDecelerationTime = 1f;
+
+    [Header("Air", order = 2)]
+    [Tooltip("How much time it takes to reach max speed horizontally while in the air.")]
+    public float airAccelerationTime = 1f;
+    [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction while in the air. This number is effectively half  because it targets the opposite max speed.")]
+    public float oppositeInputAirDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while in the air.")]
     public float noInputAirDecelerationTime = 1f;
 
+    [Header("Movement Multipliers", order = 3)]
     // these values can represent a "kind" of friction
     [Tooltip("Multiplier for acceleration time. 0 means no acceleration, 1 means normal acceleration. 0-1 means reduced time, 1+ means increased time.")]
     [Range(0,5)]
@@ -55,11 +64,11 @@ public class PlayerController : MonoBehaviour
     [Range(0, 5)]
     public float decelerationTimeMultiplier = 1;
 
-    [Header("Idle", order = 1)]
+    [Header("Idle", order = 4)]
 
-    [Header("Running", order = 2)]
+    [Header("Running", order = 5)]
 
-    [Header("Jumping", order = 3)]
+    [Header("Jumping", order = 6)]
 
     [Tooltip("Vertical force applied to the Rigidbody on jump.")]
     public float jumpForce = 100f;
@@ -67,7 +76,7 @@ public class PlayerController : MonoBehaviour
     [Range(0, 10)] 
     public float lowJumpMultiplier = 2f;
 
-    [Header("Falling")]
+    [Header("Falling", order = 7)]
 
     [Tooltip("Gravity multiplier while falling.")]
     [Range(0, 10)]
@@ -149,27 +158,6 @@ public class PlayerController : MonoBehaviour
 
         //Vector2 targetVelocity = new Vector2(horizontalMovementAxis * maxSpeed, 0);
         targetVelocity = horizontalMovementAxis * maxSpeed;
-
-        // with input
-        if (horizontalMovementAxis != 0)
-        {
-            if (HeadingTowardsCurrentDirection())
-            {
-                TowardsInputAccelerate();
-                
-            } else if (!HeadingTowardsCurrentDirection())
-            {
-                // TODO change deceleration strength depending on if on ground or in air.
-                OppositeInputDecelerate();
-            }
-        } else
-        {
-            // no input decleration to stop
-            //NoInputDecelerate();
-        }
-
-        //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\tref velocity: " + xVelocityRef + "\tSmoothed Velocity:" + smoothedVelocity);
-        //Debug.LogWarning("x velocity: " + RigidBody.velocity.x + "\ttargetVelocity: " + targetVelocity + "\taxis: " + horizontalMovementAxis);
     }
 
     // applies jumping force and switches to the upward state
@@ -180,22 +168,64 @@ public class PlayerController : MonoBehaviour
         ChangeState(new PlayerUpwardState());
         jumpInitiated = false;
     }
-
-    public void TowardsInputAccelerate()
+    public void GroundInputMove()
     {
-        // speed up to maxSpeed
-        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, accelerationTimeMultiplier);
+        if (NoHorizontalInput())
+        {
+            return;
+        }
+
+        if (HeadingTowardsCurrentDirection())
+        {
+            TowardsInputGroundAccelerate();
+        } else
+        {
+            OppositeInputGroundDecelerate();
+        }
     }
 
-    public void OppositeInputDecelerate()
+    public void AirInputMove()
     {
-        // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
-        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime, decelerationTimeMultiplier);
+        if (NoHorizontalInput())
+        {
+            return;
+        }
+
+        if (HeadingTowardsCurrentDirection())
+        {
+            TowardsInputAirAccelerate();
+        } else
+        {
+            OppositeInputAirDecelerate();
+        }
+    }
+
+
+    // speed up to maxSpeed
+    private void TowardsInputGroundAccelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, groundAccelerationTime, accelerationTimeMultiplier);
+    }
+
+    // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
+    private void OppositeInputGroundDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputGroundDecelerationTime, decelerationTimeMultiplier);
     }
 
     public void NoInputGroundDecelerate()
     {
         PhysicsUtils.ApplyForceTowards(RigidBody, 0, noInputGroundDecelerationTime, decelerationTimeMultiplier);
+    }
+
+    private void TowardsInputAirAccelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, airAccelerationTime, accelerationTimeMultiplier);
+    }
+
+    private void OppositeInputAirDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputAirDecelerationTime, decelerationTimeMultiplier);
     }
 
     public void NoInputAirDecelerate()

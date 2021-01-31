@@ -32,6 +32,8 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.AirInputMove();
+
         if (player.IsMovingUpward())
         {
             player.ChangeState(new PlayerUpwardState());

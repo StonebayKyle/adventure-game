@@ -25,6 +25,8 @@ public class PlayerRunningState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.GroundInputMove();
+
         if (jumpPressed)
         {
             player.Jump();

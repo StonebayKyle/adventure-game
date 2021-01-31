@@ -39,6 +39,8 @@ public class PlayerUpwardState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.AirInputMove();
+
         if (!jumpHeld)
         {
             // increase gravity so player doesn't jump as high when the jump button is released 
