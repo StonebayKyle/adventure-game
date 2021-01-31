@@ -32,9 +32,12 @@ public class PlayerController : MonoBehaviour
     private bool prevRightHeld;
 
 
+
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
     public float maxSpeed = 5f;
+    private float targetVelocity; // maxSpeed * horizontalMovementAxis, used as a directional target velocity for current movement.
+
     [Tooltip("How much time it takes to reach max speed horizontally.")]
     public float accelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is input in the opposite direction. This number is effectively half  because it targets the opposite max speed.")]
@@ -145,20 +148,19 @@ public class PlayerController : MonoBehaviour
         }
 
         //Vector2 targetVelocity = new Vector2(horizontalMovementAxis * maxSpeed, 0);
-        float targetVelocity = horizontalMovementAxis * maxSpeed;
+        targetVelocity = horizontalMovementAxis * maxSpeed;
 
         // with input
         if (horizontalMovementAxis != 0)
         {
             if (HeadingTowardsCurrentDirection())
             {
-                // speed up to maxSpeed
-                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, accelerationTimeMultiplier);
+                TowardsInputAccelerate();
+                
             } else if (!HeadingTowardsCurrentDirection())
             {
                 // TODO change deceleration strength depending on if on ground or in air.
-                // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
-                PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime, decelerationTimeMultiplier);
+                OppositeInputDecelerate();
             }
         } else
         {
@@ -177,6 +179,18 @@ public class PlayerController : MonoBehaviour
         RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
         ChangeState(new PlayerUpwardState());
         jumpInitiated = false;
+    }
+
+    public void TowardsInputAccelerate()
+    {
+        // speed up to maxSpeed
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, accelerationTime, accelerationTimeMultiplier);
+    }
+
+    public void OppositeInputDecelerate()
+    {
+        // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
+        PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, oppositeInputDecelerationTime, decelerationTimeMultiplier);
     }
 
     public void NoInputGroundDecelerate()
