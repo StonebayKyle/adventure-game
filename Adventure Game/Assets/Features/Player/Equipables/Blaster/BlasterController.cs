@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlasterController : MonoBehaviour
 {
+    [Header("Base")]
     [Tooltip("The transform point for where the blaster should be bound to positionally. This is intended for where the blaster would be held from (i.e. hands, pedestal, etc).")]
     public Transform holdPoint;
     [Header("Bullet")]
@@ -19,8 +20,14 @@ public class BlasterController : MonoBehaviour
     [Tooltip("How much force to apply to the holdingRigidbody.")]
     public float recoilForce = 20f;
     [Header("Player")]
-    [Tooltip("Optional: The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
+    [Tooltip("Optional (required if CooldownMode is GroundTouch): The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
     public PlayerController playerController;
+
+    [Header("Firing Cooldown")]
+    [Tooltip("Which mode to use for a cooldown on blaster firing.")]
+    public BlasterCooldownMode cooldownMode;
+    [Tooltip("How much time, in seconds, is the firing cooldown while on Time cooldown mode.")]
+    public float cooldownTime = 1f;
 
     private Rigidbody2D rb;
 

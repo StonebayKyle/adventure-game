@@ -32,8 +32,11 @@ public class BlasterReadyState : IBlasterState
             //Debug.LogWarning("Fire activated in FixedUpdate");
             firePressed = false;
             blaster.Fire();
-            blaster.ChangeState(new BlasterReloadState());
-            return;
+            if (blaster.cooldownMode != BlasterCooldownMode.None)
+            {
+                blaster.ChangeState(new BlasterReloadState());
+                return;
+            }
         }
     }
 

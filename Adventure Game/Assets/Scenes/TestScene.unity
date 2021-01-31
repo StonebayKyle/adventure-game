@@ -662,6 +662,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1720586211}
+    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: cooldownMode
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dca55d461e56fe4ab8cd930b946882d, type: 3}
 --- !u!1001 &3718914348658239657
