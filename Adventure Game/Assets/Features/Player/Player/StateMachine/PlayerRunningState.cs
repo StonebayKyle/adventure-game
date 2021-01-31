@@ -25,6 +25,8 @@ public class PlayerRunningState : IPlayerMovementState
 
     public void FixedUpdate(PlayerController player)
     {
+        player.GroundInputMove();
+
         if (jumpPressed)
         {
             player.Jump();
@@ -43,7 +45,7 @@ public class PlayerRunningState : IPlayerMovementState
 
         if (player.NoHorizontalInput())
         {
-            player.NoInputDecelerate();
+            player.NoInputGroundDecelerate();
             //Debug.LogWarning("Decelerating!");
         }
 
