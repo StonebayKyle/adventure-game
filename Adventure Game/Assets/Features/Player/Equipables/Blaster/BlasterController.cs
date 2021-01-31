@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlasterController : MonoBehaviour
 {
+    [Header("Base")]
     [Tooltip("The transform point for where the blaster should be bound to positionally. This is intended for where the blaster would be held from (i.e. hands, pedestal, etc).")]
     public Transform holdPoint;
     [Header("Bullet")]
@@ -19,43 +20,51 @@ public class BlasterController : MonoBehaviour
     [Tooltip("How much force to apply to the holdingRigidbody.")]
     public float recoilForce = 20f;
     [Header("Player")]
-    [Tooltip("Optional: The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
+    [Tooltip("Optional (required if CooldownMode is GroundTouch): The 'holding' object's PlayerController. This is used to tell the player when the blaster is fired. Must also pass reference for its Rigidbody separately for recoil to apply (recoil is not related to this).")] // could potentially be replaced by events, but I have not learned that yet. It could also be improved using inheritance (of blasters) instead of these optional fields.
     public PlayerController playerController;
 
-    private bool firePressed = false;
+    [Header("Firing Cooldown")]
+    [Tooltip("Which mode to use for a cooldown on blaster firing.")]
+    public BlasterCooldownMode cooldownMode;
+    [Tooltip("How much time, in seconds, is the firing cooldown while on Time cooldown mode.")]
+    public float cooldownTime = 1f;
 
     private Rigidbody2D rb;
+
+    private BlasterStateMachine stateMachine;
+
+    public bool BlasterFiredInAir
+    {
+        get
+        {
+            // it's probably not a good idea to rely on the playerController for this
+            return playerController.blasterFiredInAir;
+        }
+    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        stateMachine = new BlasterStateMachine(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        stateMachine.ChangeState(new BlasterReadyState());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //Debug.LogWarning("Fire1 pressed in Update");
-            firePressed = true;
-        }
+        stateMachine.Update();
     }
 
     private void FixedUpdate()
     {
         UpdatePosition();
-        if (firePressed)
-        {
-            //Debug.LogWarning("Fire activated in FixedUpdate");
-            firePressed = false;
-            Fire();
-        }
+        stateMachine.FixedUpdate();
     }
 
     private void UpdatePosition()
@@ -64,15 +73,15 @@ public class BlasterController : MonoBehaviour
         rb.MovePosition(targetPosition);
     }
 
-    private void Fire()
+    public void Fire()
     {
         CreateLaser(laserFireForce);
         if (holdingRigidbody != null)
         {
-            // TODO: Enable this once it isn't being counteracted by the player's movement behaviour.
             ApplyRecoilForce(recoilForce);
         }
 
+        stateMachine.OnBlasterFire(this);
         // if there is a playerController to send the fire signal to
         if (playerController != null)
         {
@@ -96,5 +105,9 @@ public class BlasterController : MonoBehaviour
         holdingRigidbody.AddForce(forceDirection * force, ForceMode2D.Impulse);
     }
 
+    public void ChangeState(IBlasterState newState)
+    {
+        stateMachine.ChangeState(newState);
+    }
 }
 

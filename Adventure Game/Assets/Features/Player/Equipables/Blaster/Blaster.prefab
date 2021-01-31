@@ -156,6 +156,8 @@ MonoBehaviour:
   holdingRigidbody: {fileID: 0}
   recoilForce: 16
   playerController: {fileID: 0}
+  cooldownMode: 2
+  cooldownTime: 1
 --- !u!114 &4348120374626499681
 MonoBehaviour:
   m_ObjectHideFlags: 0
