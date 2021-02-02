@@ -11,7 +11,7 @@ public class PlayerFallingState : IPlayerMovementState
 
     public void EnterState(PlayerController player)
     {
-        player.ChangeAnimationState(PlayerController.IDLE_ANIMATION);
+        // no animation change is intentional, so it keeps whatever the previous animation was for more consistency.
         jumpPressedRecently = false;
         forgiveJumpTimer = new Timer(player.forgiveJumpSeconds);
         //Debug.LogWarning("Falling!");
