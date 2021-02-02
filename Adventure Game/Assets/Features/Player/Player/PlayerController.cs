@@ -10,9 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RigidBody { get; private set; }
 
-    public Animator Animator { get; private set; }
+    private Animator animator;
     private string currentAnimationState;
-
 
     // eventually convert into an enum
     [System.NonSerialized]
@@ -104,7 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
-        Animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
         boxCollider = GetComponent<BoxCollider2D>();
 
@@ -164,7 +163,7 @@ public class PlayerController : MonoBehaviour
         if (currentAnimationState == newState) return;
 
         // play the animation
-        Animator.Play(newState);
+        animator.Play(newState);
 
         // reassign the current state.
         currentAnimationState = newState;
