@@ -1451,16 +1451,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.18
       objectReference: {fileID: 0}
@@ -1509,26 +1499,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3402348464444843781, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: upwardVelocityThreshold
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 3571937707281484929, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 671863167}
-    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: recoilForce
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5067750181302780946, guid: 0dca55d461e56fe4ab8cd930b946882d,
-        type: 3}
-      propertyPath: laserFireForce
-      value: 20
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dca55d461e56fe4ab8cd930b946882d, type: 3}
 --- !u!1001 &588794971
