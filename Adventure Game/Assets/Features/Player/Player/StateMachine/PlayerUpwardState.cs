@@ -10,6 +10,7 @@ public class PlayerUpwardState : IPlayerMovementState
 
     public void EnterState(PlayerController player)
     {
+        player.ChangeAnimationState(PlayerController.JUMP_ANIMATION);
         jumpHeld = player.jumpInitiated; // this is true on Enter when the player jumped into UpwardState.
         player.blasterFiredInAir = !jumpHeld; // if upward entered by anything other than jump, assume it was blaster.
 
