@@ -199,6 +199,7 @@ public class PlayerController : MonoBehaviour
         ChangeState(new PlayerUpwardState());
         jumpInitiated = false;
     }
+
     public void GroundInputMove()
     {
         if (NoHorizontalInput())
