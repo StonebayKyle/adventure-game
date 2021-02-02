@@ -1509,6 +1509,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3402348464444843781, guid: 0dca55d461e56fe4ab8cd930b946882d,
+        type: 3}
+      propertyPath: upwardVelocityThreshold
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 3571937707281484929, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: cam

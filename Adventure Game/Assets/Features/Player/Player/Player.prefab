@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3402348462753552514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 5523418032263606922}
   - {fileID: 6888281382407722347}
@@ -181,7 +181,7 @@ MonoBehaviour:
     m_Bits: 512
   checkDistance: 0.95
   sideCheckOffset: -0.7
-  upwardVelocityThreshold: 0.005
+  upwardVelocityThreshold: 0.01
   fallVelocityThreshold: -0.0001
   moveVelocityThreshold: 1
 --- !u!95 &4825704749712029550
@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
       propertyPath: recoilForce
-      value: 32
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
@@ -403,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
       propertyPath: laserFireForce
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
