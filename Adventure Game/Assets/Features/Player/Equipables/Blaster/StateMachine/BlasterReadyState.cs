@@ -9,7 +9,7 @@ public class BlasterReadyState : IBlasterState
 
     public void EnterState(BlasterController blaster)
     {
-        blaster.ChangeAnimationState(BlasterController.IDLE_ANIMATION);
+        blaster.ChangeAnimationState(BlasterController.RELOAD_ANIMATION); // opposite because reload looks like when it becomes reloaded, not while it is reloading or not able to fire.
         firePressed = false;
     }
 
