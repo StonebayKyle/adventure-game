@@ -9,6 +9,7 @@ public class BlasterReloadState : IBlasterState
 
     public void EnterState(BlasterController blaster)
     {
+        blaster.ChangeAnimationState(BlasterController.RELOAD_ANIMATION);
         timer = new Timer(blaster.cooldownTime);
         timerCompleted = false;
     }

@@ -9,6 +9,7 @@ public class BlasterReadyState : IBlasterState
 
     public void EnterState(BlasterController blaster)
     {
+        blaster.ChangeAnimationState(BlasterController.IDLE_ANIMATION);
         firePressed = false;
     }
 
