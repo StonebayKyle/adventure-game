@@ -123,6 +123,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destructionRadius: 2
+  lifetime: 10
+  creationSound: {fileID: 8300000, guid: f189d8052a6e92b47bf7828e2fb0299e, type: 3}
+  collisionSound: {fileID: 8300000, guid: 779ef31311b664a4495bafafb80dd73d, type: 3}
+  soundVolume: 1
 --- !u!50 &-3617741699063123549
 Rigidbody2D:
   serializedVersion: 4

@@ -11,6 +11,14 @@ public class Laser : MonoBehaviour
     [Tooltip("How much time, in seconds, it takes for the Laser to destroy itself after creation. The player isn't meant to notice this, as it is just an optimization for reducing active objects (think: despawning).")]
     public float lifetime = 10f;
 
+    [Header("Sound")]
+    [Tooltip("AudioClip that plays when the laser is created.")]
+    public AudioClip creationSound;
+    [Tooltip("AudioClip that plays when the laser collides with the environment and destroys itself.")]
+    public AudioClip collisionSound;
+    public float soundVolume = 1f;
+
+
     private Grid grid;
     private Tilemap destructibleTilemap;
 
@@ -25,14 +33,15 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
+        PlaySound(creationSound);
         Destroy(gameObject, lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        PlaySound(collisionSound);
         //Debug.LogWarning("Collision");
-        // TODO make it play an animation and do more interesting things with environment.
-        HandleDestruction(collision);   
+        HandleDestruction(collision);
 
         Destroy(gameObject);
     }
@@ -85,6 +94,11 @@ public class Laser : MonoBehaviour
     private void ExplodeCell(Vector3Int position)
     {
         destructibleTilemap.SetTile(position, null);
+    }
+
+    private void PlaySound(AudioClip audioClip)
+    {
+        AudioSource.PlayClipAtPoint(audioClip, transform.position, soundVolume);
     }
 
     public void OnDrawGizmos()
