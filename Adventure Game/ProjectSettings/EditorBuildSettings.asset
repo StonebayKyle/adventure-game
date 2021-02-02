@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CollapsedMines.unity
+    guid: 030616b46b383a54dbe9956cec751797
   m_configObjects: {}
