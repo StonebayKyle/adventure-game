@@ -5,9 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(PhysicsCheck))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RigidBody { get; private set; }
+
+    public Animator Animator { get; private set; }
+    private string currentAnimationState;
+
+
+    // eventually convert into an enum
+    [System.NonSerialized]
+    public const string IDLE_ANIMATION = "PlayerIdleAnimation";
+    [System.NonSerialized]
+    public const string RUN_ANIMATION = "PlayerRunAnimation";
+    [System.NonSerialized]
+    public const string WALK_ANIMATION = "PlayerWalkAnimation";
+    [System.NonSerialized]
+    public const string JUMP_ANIMATION = "PlayerJumpAnimation";
 
     private BoxCollider2D boxCollider;
 
@@ -89,6 +104,8 @@ public class PlayerController : MonoBehaviour
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
+        Animator = GetComponent<Animator>();
+
         boxCollider = GetComponent<BoxCollider2D>();
 
         physicsCheck = GetComponent<PhysicsCheck>();
@@ -140,6 +157,19 @@ public class PlayerController : MonoBehaviour
         stateMachine.ChangeState(newState);
     }
 
+    // function inspired by Youtube user  "Lost Relic Games"
+    public void ChangeAnimationState(string newState)
+    {
+        // stop the same animation from interrupting itself
+        if (currentAnimationState == newState) return;
+
+        // play the animation
+        Animator.Play(newState);
+
+        // reassign the current state.
+        currentAnimationState = newState;
+    }
+
     private void UpdateInputs()
     {
         prevleftHeld = leftHeld;
@@ -163,6 +193,7 @@ public class PlayerController : MonoBehaviour
     // applies jumping force and switches to the upward state
     public void Jump()
     {
+        ChangeAnimationState(PlayerController.JUMP_ANIMATION);
         jumpInitiated = true;
         RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
         ChangeState(new PlayerUpwardState());
