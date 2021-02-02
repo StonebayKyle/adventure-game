@@ -17,6 +17,9 @@ public class Laser : MonoBehaviour
     [Tooltip("AudioClip that plays when the laser collides with the environment and destroys itself.")]
     public AudioClip collisionSound;
     public float soundVolume = 1f;
+    [Tooltip("Percentage of soundVolume to play collisionSound at")]
+    [Range(0,1)]
+    public float collisionSoundVolumeScale = 1f;
 
 
     private Grid grid;
@@ -33,13 +36,13 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
-        PlaySound(creationSound);
+        PlaySound(creationSound, soundVolume);
         Destroy(gameObject, lifetime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        PlaySound(collisionSound);
+        PlaySound(collisionSound, soundVolume*collisionSoundVolumeScale);
         //Debug.LogWarning("Collision");
         HandleDestruction(collision);
 
@@ -96,9 +99,9 @@ public class Laser : MonoBehaviour
         destructibleTilemap.SetTile(position, null);
     }
 
-    private void PlaySound(AudioClip audioClip)
+    private void PlaySound(AudioClip audioClip, float volume)
     {
-        AudioSource.PlayClipAtPoint(audioClip, transform.position, soundVolume);
+        AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, volume);
     }
 
     public void OnDrawGizmos()
