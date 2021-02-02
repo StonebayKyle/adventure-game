@@ -6,6 +6,7 @@ public class PlayerRunningState : IPlayerMovementState
 
     public void EnterState(PlayerController player)
     {
+        player.ChangeAnimationState(PlayerController.RUN_ANIMATION);
         jumpPressed = false;
     }
 

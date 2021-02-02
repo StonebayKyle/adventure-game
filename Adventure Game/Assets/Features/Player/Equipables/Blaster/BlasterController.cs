@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent(typeof(Animator))]
 public class BlasterController : MonoBehaviour
 {
     [Header("Base")]
@@ -31,6 +32,14 @@ public class BlasterController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Animator animator;
+    private string currentAnimationState;
+
+    [System.NonSerialized]
+    public const string RELOAD_ANIMATION = "BlasterReloadAnimation";
+    [System.NonSerialized]
+    public const string IDLE_ANIMATION = "BlasterIdleAnimation";
+
     private BlasterStateMachine stateMachine;
 
     public bool BlasterFiredInAir
@@ -45,6 +54,8 @@ public class BlasterController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        animator = GetComponent<Animator>();
 
         stateMachine = new BlasterStateMachine(this);
     }
@@ -108,6 +119,18 @@ public class BlasterController : MonoBehaviour
     public void ChangeState(IBlasterState newState)
     {
         stateMachine.ChangeState(newState);
+    }
+
+    public void ChangeAnimationState(string newState)
+    {
+        // stop the same animation from interrupting itself
+        if (currentAnimationState == newState) return;
+
+        // play the animation
+        animator.Play(newState);
+
+        // reassign the current state.
+        currentAnimationState = newState;
     }
 }
 
