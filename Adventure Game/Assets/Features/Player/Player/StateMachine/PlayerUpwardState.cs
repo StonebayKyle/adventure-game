@@ -61,6 +61,12 @@ public class PlayerUpwardState : IPlayerMovementState
             player.ChangeState(new PlayerFallingState());
         }
 
+        if (player.IsGrounded())
+        {
+            ChangeToGroundState(player);
+            return;
+        }
+
 
         // TODO: set the gravity scale to low-jump or an inbetween value when the laser is fired (and don't let them go back to high-jump)
 
@@ -82,5 +88,18 @@ public class PlayerUpwardState : IPlayerMovementState
         //Debug.LogWarning("Blaster fire detected!");
         // increase gravity to low-jump gravity so the player can't launch themselves with the blaster and also high-jump
         player.SetGravityScale(lowJumpGravityScale);
+    }
+
+    private void ChangeToGroundState(PlayerController player)
+    {
+        player.blasterFiredInAir = false;
+        if (player.IsHorizontallyMoving())
+        {
+            player.ChangeState(new PlayerRunningState());
+        }
+        else
+        {
+            player.ChangeState(new PlayerIdleState());
+        }
     }
 }
