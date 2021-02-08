@@ -40,8 +40,6 @@ public class PhysicsCheck : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if (!IsFalling()) return true;
-
         // TODO make this use colliders
         RaycastHit2D[] hits = new RaycastHit2D[3];
 
