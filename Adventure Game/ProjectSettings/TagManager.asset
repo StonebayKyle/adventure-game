@@ -9,6 +9,7 @@ TagManager:
   - Environment
   - Destructible
   - DestroyingProjectile
+  - SceneManagement
   layers:
   - Default
   - TransparentFX
