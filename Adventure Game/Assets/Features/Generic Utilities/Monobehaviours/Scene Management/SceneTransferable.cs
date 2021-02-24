@@ -17,7 +17,7 @@ public class SceneTransferable : MonoBehaviour
         SceneConnector connector = collision.gameObject.GetComponent<SceneConnector>();
         if (connector != null)
         {
-            Debug.LogWarning("Collision with connector!");
+            //Debug.LogWarning("Collision with connector!");
             NextLevelSpawnPointID = connector.spawnPointID;
             // When the scene is loaded, OnSceneLoaded will finish the process
             SceneManager.LoadScene(connector.sceneName); // Should make a loading screen or smoother transition.
@@ -27,13 +27,13 @@ public class SceneTransferable : MonoBehaviour
     private void TransportToSpawnPoint()
     {
         SpawnPoint[] spawnPoints = FindObjectsOfType<SpawnPoint>();
-        Debug.LogWarning("Amount of spawnPoints: " + spawnPoints.Length);
+        //Debug.LogWarning("Amount of spawnPoints: " + spawnPoints.Length);
         foreach (SpawnPoint spawnPoint in spawnPoints)
         {
-            Debug.LogWarning("Searching spawnPoints...");
+            //Debug.LogWarning("Searching spawnPoints...");
             if (spawnPoint.spawnPointID == NextLevelSpawnPointID)
             {
-                Debug.LogWarning("Found equal spawnPoint!");
+                //Debug.LogWarning("Found equal spawnPoint!");
                 transform.position = spawnPoint.transform.position;
                 break;
             }
@@ -53,7 +53,7 @@ public class SceneTransferable : MonoBehaviour
     // delegate that is called when the scene is loaded.
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
-        Debug.LogWarning("Load finished");
+        //Debug.LogWarning("Load finished");
         TransportToSpawnPoint();
     }
 }
