@@ -1447,7 +1447,7 @@ PrefabInstance:
     - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3402348462753552543, guid: 0dca55d461e56fe4ab8cd930b946882d,
         type: 3}
@@ -1546,7 +1546,7 @@ PrefabInstance:
     - target: {fileID: 2823161744298107054, guid: 95ba470b467676e43a03ee9689271151,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2823161744298107054, guid: 95ba470b467676e43a03ee9689271151,
         type: 3}
@@ -1850,6 +1850,95 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1001 &1097529807
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 777015035698252500, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_Name
+      value: ExitConnector
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 78.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -23.49064
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252586, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252587, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: sceneName
+      value: Mechanical City
+      objectReference: {fileID: 0}
+    - target: {fileID: 777015035698252587, guid: aecae5810d19a7c4e967e5365897e383,
+        type: 3}
+      propertyPath: spawnPointID
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aecae5810d19a7c4e967e5365897e383, type: 3}
 --- !u!213 &1134713176
 Sprite:
   m_ObjectHideFlags: 0
@@ -2233,7 +2322,7 @@ Transform:
   - {fileID: 4265153454019852889}
   - {fileID: 365294515}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &4265153452747052364
 Grid:
