@@ -5,11 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(PhysicsCheck))]
+[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RigidBody { get; private set; }
 
+    private AudioSource audioSource;
     private Animator animator;
     private string currentAnimationState;
 
@@ -44,8 +46,6 @@ public class PlayerController : MonoBehaviour
     public bool blasterFiredInAir; // true after blaster was fired to enter upward state, or after fired while in upward or falling states. Reset to false on hitting the ground.
     private bool prevleftHeld;
     private bool prevRightHeld;
-
-
 
     [Header("Movement", order = 0)]
     [Tooltip("The max horizontal speed a player can reach through movement inputs.")]
@@ -98,11 +98,19 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Time the player can queue a jump before a collision with the ground")]
     public float forgiveJumpSeconds; // can help make jumping more responsive
 
+    [Header("Sound", order = 8)]
+    [Tooltip("Sound that is played when the player jumps.")]
+    public AudioClip jumpSound;
+    [Tooltip("Sound that is played when the player lands on the environment (becomes grounded).")]
+    public AudioClip landSound;
+
+
 
     private void Awake()
     {
         RigidBody = GetComponent<Rigidbody2D>();
 
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
         boxCollider = GetComponent<BoxCollider2D>();
@@ -192,11 +200,18 @@ public class PlayerController : MonoBehaviour
     // applies jumping force and switches to the upward state
     public void Jump()
     {
+        SoundUtils.PlaySound(audioSource, jumpSound);
         ChangeAnimationState(PlayerController.JUMP_ANIMATION);
         jumpInitiated = true;
         RigidBody.AddForce(new Vector2(0, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
         ChangeState(new PlayerUpwardState());
         jumpInitiated = false;
+    }
+
+    // called when the player hits the ground and switches into a ground state.
+    public void OnGrounded()
+    {
+        SoundUtils.PlaySound(audioSource, landSound);
     }
 
     public void GroundInputMove()

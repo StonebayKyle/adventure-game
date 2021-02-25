@@ -92,6 +92,7 @@ public class PlayerUpwardState : IPlayerMovementState
 
     private void ChangeToGroundState(PlayerController player)
     {
+        player.OnGrounded();
         player.blasterFiredInAir = false;
         if (player.IsHorizontallyMoving())
         {

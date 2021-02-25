@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3402348462753552515}
   - component: {fileID: 3402348464444843781}
   - component: {fileID: 4825704749712029550}
+  - component: {fileID: 8256232415768475192}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3402348462753552514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_Children:
   - {fileID: 5523418032263606922}
   - {fileID: 6888281382407722347}
@@ -161,6 +162,8 @@ MonoBehaviour:
   lowJumpMultiplier: 3
   fallMultiplier: 1
   forgiveJumpSeconds: 0.017
+  jumpSound: {fileID: 8300000, guid: 90a80f607c856b34e9974ea40cd3cae4, type: 3}
+  landSound: {fileID: 8300000, guid: 68fecd88120f26f42a63454d73e0fbd5, type: 3}
 --- !u!114 &3402348464444843781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +181,7 @@ MonoBehaviour:
     m_Bits: 512
   checkDistance: 0.95
   sideCheckOffset: -0.7
-  upwardVelocityThreshold: 0.001
+  upwardVelocityThreshold: 0.01
   fallVelocityThreshold: -0.0001
   moveVelocityThreshold: 1
 --- !u!95 &4825704749712029550
@@ -200,6 +203,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &8256232415768475192
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3402348462753552514}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &1793402927
 Animator:
   serializedVersion: 3
@@ -294,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
       propertyPath: recoilForce
-      value: 32
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
@@ -304,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}
       propertyPath: laserFireForce
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5445399413653468402, guid: 04b68234b39800545a02ecd5693111fa,
         type: 3}

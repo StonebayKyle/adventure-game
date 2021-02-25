@@ -4,5 +4,20 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/CollapsedMines.unity
+    guid: 030616b46b383a54dbe9956cec751797
+  - enabled: 1
+    path: Assets/Scenes/Mechanical City.unity
+    guid: 6c515fe5fb024c84f901285ee3c3d96a
+  - enabled: 1
+    path: Assets/Scenes/Coot's Home.unity
+    guid: 687adccc8fc5f524a894bbe9279a9534
+  - enabled: 1
+    path: Assets/Scenes/Shrouded Tundra.unity
+    guid: d45186ef0c945ad448aff94a5231aa78
+  - enabled: 1
+    path: Assets/Scenes/Verdant Cliffs.unity
+    guid: a4e76ac35597122428a087e6cd946bb3
   m_configObjects: {}

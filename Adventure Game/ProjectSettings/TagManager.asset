@@ -7,6 +7,9 @@ TagManager:
   - Virtual Camera
   - Equipable
   - Environment
+  - Destructible
+  - DestroyingProjectile
+  - SceneManagement
   layers:
   - Default
   - TransparentFX

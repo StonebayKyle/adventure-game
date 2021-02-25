@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3617741699063123549}
   m_Layer: 11
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: DestroyingProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d9175e1d1830347a4b23f5c8b54907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destructionRadius: 2
+  lifetime: 10
+  creationSound: {fileID: 8300000, guid: f189d8052a6e92b47bf7828e2fb0299e, type: 3}
+  collisionSound: {fileID: 8300000, guid: 779ef31311b664a4495bafafb80dd73d, type: 3}
+  soundVolume: 2
+  collisionSoundVolumeScale: 0.5
 --- !u!50 &-3617741699063123549
 Rigidbody2D:
   serializedVersion: 4
