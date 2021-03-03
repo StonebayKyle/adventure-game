@@ -60,6 +60,8 @@ public class PlayerController : MonoBehaviour
     public float oppositeInputGroundDecelerationTime = 1f;
     [Tooltip("How much time it takes to stop from max speed horizontally when there is no input while on the ground.")]
     public float noInputGroundDecelerationTime = 1f;
+    [Tooltip("How much time it takes to slow to max speed horizontally while on the ground when the player is moving faster than maxSpeed and is moving towards their current direction.")]
+    public float groundOverMaxDecelerationTime = 1f;
 
     [Header("Air", order = 2)]
     [Tooltip("How much time it takes to reach max speed horizontally while in the air.")]
@@ -223,7 +225,13 @@ public class PlayerController : MonoBehaviour
 
         if (HeadingTowardsCurrentDirection())
         {
-            TowardsInputGroundAccelerate();
+            if (SpeedOverMax())
+            {
+                TowardsInputGroundOverMaxDecelerate();
+            } else
+            {
+                TowardsInputGroundAccelerate();
+            }
         } else
         {
             OppositeInputGroundDecelerate();
@@ -251,6 +259,11 @@ public class PlayerController : MonoBehaviour
     private void TowardsInputGroundAccelerate()
     {
         PhysicsUtils.ApplyForceTowards(RigidBody, targetVelocity, groundAccelerationTime, accelerationTimeMultiplier);
+    }
+
+    private void TowardsInputGroundOverMaxDecelerate()
+    {
+        PhysicsUtils.ApplyForceTowardsLimited(RigidBody, targetVelocity, groundOverMaxDecelerationTime, accelerationTimeMultiplier);
     }
 
     // slow to stop. Target velocity is used instead of 0 because the curve is too slow when at 0.
@@ -333,6 +346,12 @@ public class PlayerController : MonoBehaviour
     public bool IsHorizontallyMoving()
     {
         return physicsCheck.IsHorizontallyMoving();
+    }
+
+    // whether or not the player's horizontal velocity is over maxSpeed (targetVelocity, specifically) or not. does not account for direction. Add a HeadingTowardsCurrentDirection() check if direction is important
+    public bool SpeedOverMax()
+    {
+        return Mathf.Abs(RigidBody.velocity.x) > Mathf.Abs(targetVelocity);
     }
 
 

@@ -153,6 +153,7 @@ MonoBehaviour:
   groundAccelerationTime: 0.025
   oppositeInputGroundDecelerationTime: 0.025
   noInputGroundDecelerationTime: 0.025
+  groundOverMaxDecelerationTime: 0.05
   airAccelerationTime: 0.025
   oppositeInputAirDecelerationTime: 0.025
   noInputAirDecelerationTime: 0.1
