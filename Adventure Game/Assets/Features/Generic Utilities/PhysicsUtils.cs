@@ -33,6 +33,31 @@ public class PhysicsUtils
     }
 
     /// <summary>
+    /// Applies a force to reach <paramref name="targetVelocity"/> along a Mathf.SmoothDamp curve relative to <paramref name="currentVelocity"/> in <paramref name="accelerationTime"/> time. Generalized method for <see cref="ApplyForceTowards(Rigidbody2D, float, float)"></see> and <see cref="ApplyForceTowardsLimited(Rigidbody2D, float, float)"/>. See references for usage.
+    /// </summary>
+    /// <param name="rigidbody"></param>
+    /// <param name="currentVelocity"></param>
+    /// <param name="trueTargetVelocity"></param>
+    /// <param name="accelerationTime"></param>
+    private static void ApplyForceTowardsGeneral(Rigidbody2D rigidbody, float currentVelocity, float targetVelocity, float accelerationTime)
+    {
+        float xVelocity = 0.0f;
+
+        // calculate the target velocity for a single run through this method, which is smoothed.
+        float smoothedVelocity = Mathf.SmoothDamp(currentVelocity, targetVelocity, ref xVelocity, accelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
+
+        //rigidbody.velocity = new Vector2(smoothedVelocity, rigidbody.velocity.y);
+        // difMath = velNow - velBefore
+        // dif = smooth - rb.vel.x
+
+        // F = m(dv/dt)
+        Vector2 force = new Vector2(rigidbody.mass *
+            ((smoothedVelocity - currentVelocity) / Time.fixedDeltaTime)
+            , 0);
+        rigidbody.AddForce(force);
+    }
+
+    /// <summary>
     /// Applies a force on <paramref name="rigidbody"/> to reach <paramref name="targetVelocity"/> in (about) <paramref name="accelerationTime"/> seconds.
     /// </summary>
     /// <param name="rigidbody"></param>
@@ -85,29 +110,5 @@ public class PhysicsUtils
         ApplyForceTowardsLimited(rigidbody, targetVelocity, accelerationTime * friction);
     }
 
-    /// <summary>
-    /// Applies a force to reach <paramref name="targetVelocity"/> along a Mathf.SmoothDamp curve relative to <paramref name="currentVelocity"/> in <paramref name="accelerationTime"/> time. Generalized method for <see cref="ApplyForceTowards(Rigidbody2D, float, float)"></see> and <see cref="ApplyForceTowardsLimited(Rigidbody2D, float, float)"/>. See references for usage.
-    /// </summary>
-    /// <param name="rigidbody"></param>
-    /// <param name="currentVelocity"></param>
-    /// <param name="trueTargetVelocity"></param>
-    /// <param name="accelerationTime"></param>
-    private static void ApplyForceTowardsGeneral(Rigidbody2D rigidbody, float currentVelocity, float targetVelocity, float accelerationTime)
-    {
-        float xVelocity = 0.0f;
-
-        // calculate the target velocity for a single run through this method, which is smoothed.
-        float smoothedVelocity = Mathf.SmoothDamp(currentVelocity, targetVelocity, ref xVelocity, accelerationTime, Mathf.Infinity, Time.fixedDeltaTime);
-
-        //rigidbody.velocity = new Vector2(smoothedVelocity, rigidbody.velocity.y);
-        // difMath = velNow - velBefore
-        // dif = smooth - rb.vel.x
-
-        // F = m(dv/dt)
-        Vector2 force = new Vector2(rigidbody.mass *
-            ((smoothedVelocity - currentVelocity) / Time.fixedDeltaTime)
-            , 0);
-        rigidbody.AddForce(force);
-    }
 
 }
