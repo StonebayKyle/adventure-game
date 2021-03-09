@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: CaveRuleTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 581761319177697676, guid: 6b5e88b703aa35a468c30c1857a2828c,
+  m_DefaultSprite: {fileID: -7206921963393857756, guid: 9be76833f042e864799bbae8f1ac1414,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
@@ -94,7 +94,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: -1, y: -1, z: 0}
     m_RuleTransform: 4
-  - m_Id: 0
+  - m_Id: 4
     m_Sprites:
     - {fileID: -6584624938958565670, guid: 9be76833f042e864799bbae8f1ac1414, type: 3}
     m_GameObject: {fileID: 0}
@@ -165,7 +165,7 @@ MonoBehaviour:
     - {x: -1, y: 0, z: 0}
     - {x: -1, y: -1, z: 0}
     m_RuleTransform: 1
-  - m_Id: 4
+  - m_Id: 11
     m_Sprites:
     - {fileID: 8509711266912475961, guid: 9be76833f042e864799bbae8f1ac1414, type: 3}
     m_GameObject: {fileID: 0}
@@ -247,7 +247,7 @@ MonoBehaviour:
     - {x: -1, y: -1, z: 0}
     - {x: 0, y: -1, z: 0}
     m_RuleTransform: 1
-  - m_Id: 11
+  - m_Id: 16
     m_Sprites:
     - {fileID: -7977001302064946353, guid: 9be76833f042e864799bbae8f1ac1414, type: 3}
     m_GameObject: {fileID: 0}
