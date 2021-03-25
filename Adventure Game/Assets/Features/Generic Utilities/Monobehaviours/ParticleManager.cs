@@ -30,7 +30,8 @@ public class ParticleManager : MonoBehaviour
     {
         if (particleSystem == null) return;
 
-        Instantiate(particleSystem, transform.position, transform.rotation);
+        GameObject newParticleSystem = Instantiate(particleSystem, transform.position, transform.rotation).gameObject;
+        Destroy(newParticleSystem, particleSystem.main.duration);
     }
 
     public void UpdateParticle()
