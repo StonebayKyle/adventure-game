@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1334994910512636494}
   - component: {fileID: 3857505935919849960}
   - component: {fileID: -3617741699063123549}
+  - component: {fileID: 5318033559472288988}
   m_Layer: 11
   m_Name: Laser
   m_TagString: DestroyingProjectile
@@ -149,3 +150,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &5318033559472288988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975337382162663661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac076218e6b70404e99912e6d79ffc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateParticleSystem: {fileID: 0}
+  explodeParticleSystem: {fileID: 5221190287964717767, guid: 53b041fdb2dbbb84399fdb458d73b993,
+    type: 3}
