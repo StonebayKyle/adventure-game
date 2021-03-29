@@ -52,6 +52,11 @@ public class Laser : MonoBehaviour
         Explode();
     }
 
+    private void Update()
+    {
+        particleManager.UpdateParticle();
+    }
+
     private void HandleDestruction(Collision2D collision)
     {
         if (grid == null || destructibleTilemap == null)

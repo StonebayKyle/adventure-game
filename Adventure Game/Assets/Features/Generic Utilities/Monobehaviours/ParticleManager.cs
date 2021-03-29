@@ -5,6 +5,8 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
     public ParticleSystem updateParticleSystem;
+    private GameObject updateParticleGameObject;
+
     public ParticleSystem explodeParticleSystem;
 
     [System.NonSerialized]
@@ -35,7 +37,10 @@ public class ParticleManager : MonoBehaviour
 
     public void UpdateParticle()
     {
-        StartParticleSystem(updateParticleSystem);
+        if (updateParticleSystem != null && updateParticleGameObject == null)
+        {
+            updateParticleGameObject = Instantiate(updateParticleSystem, transform.position, transform.rotation, transform).gameObject;
+        }
     }
 
     public void Explode()
