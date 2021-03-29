@@ -26,12 +26,11 @@ public class ParticleManager : MonoBehaviour
         particleSystem.Play();
     }
 
-    private void InstantiateParticleSystem(ParticleSystem particleSystem)
+    private GameObject InstantiateParticleSystem(ParticleSystem particleSystem)
     {
-        if (particleSystem == null) return;
+        if (particleSystem == null) return null;
 
-        GameObject newParticleSystem = Instantiate(particleSystem, transform.position, transform.rotation).gameObject;
-        Destroy(newParticleSystem, particleSystem.main.duration);
+        return Instantiate(particleSystem, transform.position, transform.rotation).gameObject;
     }
 
     public void UpdateParticle()
@@ -41,6 +40,10 @@ public class ParticleManager : MonoBehaviour
 
     public void Explode()
     {
-        InstantiateParticleSystem(explodeParticleSystem);
+        GameObject newExplodeParticle = InstantiateParticleSystem(explodeParticleSystem);
+        if (newExplodeParticle != null)
+        {
+            Destroy(newExplodeParticle, explodeParticleSystem.main.duration);
+        }
     }
 }
