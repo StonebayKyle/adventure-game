@@ -40,7 +40,7 @@ public class Laser : MonoBehaviour
     private void Start()
     {
         PlaySound(creationSound, soundVolume);
-        particleManager.CreateFollowParticle();
+        particleManager.CreateFollowParticles();
         Destroy(gameObject, lifetime);
     }
 
