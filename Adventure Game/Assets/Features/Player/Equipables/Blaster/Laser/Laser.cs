@@ -35,12 +35,12 @@ public class Laser : MonoBehaviour
         destructibleTilemap = GameObject.Find("Destructible").GetComponent<Tilemap>();
 
         particleManager = gameObject.GetComponent<ParticleManager>();
+        particleManager.CreateFollowParticles(); // must be called in Awake() due to its use in collisions (and collisions can happen before Start())
     }
 
     private void Start()
     {
         PlaySound(creationSound, soundVolume);
-        particleManager.CreateFollowParticles();
         Destroy(gameObject, lifetime);
     }
 
