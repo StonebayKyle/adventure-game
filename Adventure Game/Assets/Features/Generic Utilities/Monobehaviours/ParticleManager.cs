@@ -6,6 +6,8 @@ public class ParticleManager : MonoBehaviour
 {
     [Tooltip("FollowParticleSystems follow the gameobject. A ParticleSystem is instantiated as a child of the gameobject's transform and emits from the object. A trail effect would be simulated in world space, and a following effect would be simulated in local space.")]
     public ParticleSystem[] followParticleSystems;
+    [Tooltip("Which followParticleSystems indicies to PersistThenDestroy (let the particles fade before destruction) rather than instantly get deleted.")]
+    public int[] persistIndicies;
 
     private GameObject[] followParticleGameObjects;
     private ParticleSystem[] objFollowParticleSystems; // the instantiated trail's particle systems.
@@ -62,23 +64,25 @@ public class ParticleManager : MonoBehaviour
         CreateExplosionParticle();
     }
 
+    // make followParticleSystems labeled by persistIndicies particles fade before destruction
     private void PersistThenDestroyChildren()
     {
-        for (int i = 0; i < followParticleSystems.Length; i++)
+        for (int i = 0; i < persistIndicies.Length; i++)
         {
-            if (followParticleGameObjects[i] == null) continue;
+            int index = persistIndicies[i];
+            if (followParticleGameObjects[index] == null) continue;
 
             // unparents so when parent is destroyed, the child isn't.
-            followParticleGameObjects[i].transform.parent = null;
+            followParticleGameObjects[index].transform.parent = null;
 
             // stops particlesystem looping. Assignment to main and emission is required due to interface limitations
-            ParticleSystem.MainModule main = objFollowParticleSystems[i].main;
+            ParticleSystem.MainModule main = objFollowParticleSystems[index].main;
             main.loop = false;
-            ParticleSystem.EmissionModule emission = objFollowParticleSystems[i].emission;
+            ParticleSystem.EmissionModule emission = objFollowParticleSystems[index].emission;
             emission.rateOverTime = 0f;
 
             // destroy the follow GameObject after the particleSystem's duration.
-            Destroy(followParticleGameObjects[i], followParticleSystems[i].main.duration);
+            Destroy(followParticleGameObjects[index], followParticleSystems[index].main.duration);
         }
     }
 
