@@ -164,5 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followParticleSystems:
   - {fileID: 6926813646274598720, guid: dab6d208621b2aa4887af7727c507019, type: 3}
+  - {fileID: 5732304314931529591, guid: 43c5599e1343d9a44ad200a6891c02a5, type: 3}
   explodeParticleSystem: {fileID: 5221190287964717767, guid: 53b041fdb2dbbb84399fdb458d73b993,
     type: 3}
