@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4288658777668367145}
   - component: {fileID: 1588977596477560056}
-  - component: {fileID: 1334994910512636494}
   - component: {fileID: 3857505935919849960}
   - component: {fileID: -3617741699063123549}
   - component: {fileID: 5318033559472288988}
+  - component: {fileID: -2452144723824357469}
   m_Layer: 11
   m_Name: Laser
   m_TagString: DestroyingProjectile
@@ -85,32 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1334994910512636494
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6975337382162663661}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.015324477}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.033851348}
-  m_EdgeRadius: 0.01
 --- !u!114 &3857505935919849960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +142,19 @@ MonoBehaviour:
   persistIndicies: 00000000
   explodeParticleSystem: {fileID: 5221190287964717767, guid: 53b041fdb2dbbb84399fdb458d73b993,
     type: 3}
+--- !u!70 &-2452144723824357469
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6975337382162663661}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.7309176e-10, y: 0}
+  m_Size: {x: 1, y: 0.4}
+  m_Direction: 1
