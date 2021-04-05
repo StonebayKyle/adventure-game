@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5221190287964717767}
   - component: {fileID: 5221190287964717760}
   m_Layer: 11
-  m_Name: Explosion Particle System
+  m_Name: LaserExplosionParticles
   m_TagString: Particles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5221190287964717761}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.92, y: 3.91, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
