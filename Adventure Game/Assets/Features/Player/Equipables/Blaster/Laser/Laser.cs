@@ -21,6 +21,7 @@ public class Laser : MonoBehaviour
     [Range(0,1)]
     public float collisionSoundVolumeScale = 1f;
 
+    private ParticleManager particleManager; // ParticleManager on the gameobject that stores particle systems. May be null!
 
     private Grid grid;
     private Tilemap destructibleTilemap;
@@ -32,6 +33,9 @@ public class Laser : MonoBehaviour
         grid = GameObject.Find("Grid").GetComponent<Grid>();
 
         destructibleTilemap = GameObject.Find("Destructible").GetComponent<Tilemap>();
+
+        particleManager = gameObject.GetComponent<ParticleManager>();
+        particleManager.CreateFollowParticles(); // must be called in Awake() due to its use in collisions (and collisions can happen before Start())
     }
 
     private void Start()
@@ -46,7 +50,12 @@ public class Laser : MonoBehaviour
         //Debug.LogWarning("Collision");
         HandleDestruction(collision);
 
-        Destroy(gameObject);
+        Explode();
+    }
+
+    private void Update()
+    {
+        particleManager.UpdateParticle();
     }
 
     private void HandleDestruction(Collision2D collision)
@@ -109,5 +118,19 @@ public class Laser : MonoBehaviour
         // Currently doesn't show collision because once the collision happens the object gets destroyed.
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(hitPosition, .2f);
+    }
+
+    // Activate explosion particle system and destroy itself (after explode particles are gone)
+    public void Explode()
+    {
+        if (particleManager == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        // handle particle explosion
+        particleManager.Explode();
+        Destroy(gameObject);
     }
 }

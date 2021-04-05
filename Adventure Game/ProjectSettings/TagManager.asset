@@ -10,6 +10,7 @@ TagManager:
   - Destructible
   - DestroyingProjectile
   - SceneManagement
+  - Particles
   layers:
   - Default
   - TransparentFX
