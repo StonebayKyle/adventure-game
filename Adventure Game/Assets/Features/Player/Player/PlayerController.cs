@@ -330,7 +330,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsFalling()
     {
-        return physicsCheck.IsFalling();
+        return !IsGrounded() && physicsCheck.IsFalling();
     }
 
     public bool IsGrounded()
