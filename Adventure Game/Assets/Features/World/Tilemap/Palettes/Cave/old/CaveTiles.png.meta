@@ -1,79 +1,73 @@
 fileFormatVersion: 2
-guid: 607e768c25fd85e4382e10db6a3551d8
+guid: 9be76833f042e864799bbae8f1ac1414
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7591121709447093570
-    second: CaveTiles_0
+      213: 1253683460743528283
+    second: CaveTiles-4_0
   - first:
-      213: 899246111885669078
-    second: CaveTiles_1
+      213: -2237179005027716163
+    second: CaveTiles-4_1
   - first:
-      213: 7831296557821908362
-    second: CaveTiles_2
+      213: -1265878172551300874
+    second: CaveTiles-4_2
   - first:
-      213: 3933787971878157481
-    second: CaveTiles_3
+      213: -3636681027988049936
+    second: CaveTiles-4_3
   - first:
-      213: 1988647157731865578
-    second: CaveTiles_4
+      213: 289647413674121977
+    second: CaveTiles-4_4
   - first:
-      213: 2117807088299484205
-    second: CaveTiles_5
+      213: -7009891581885190354
+    second: CaveTiles-4_5
   - first:
-      213: -5539547720536998675
-    second: CaveTiles_6
+      213: 7320997473195101045
+    second: CaveTiles-4_6
   - first:
-      213: -6219947173529345322
-    second: CaveTiles_7
+      213: 6875560704321420196
+    second: CaveTiles-4_7
   - first:
-      213: 3319636106525806664
-    second: CaveTiles_8
+      213: 8509711266912475961
+    second: CaveTiles-4_8
   - first:
-      213: -2977670827266203353
-    second: CaveTiles_9
+      213: -6159512466138871979
+    second: CaveTiles-4_9
   - first:
-      213: -6571767030028021166
-    second: CaveTiles_10
+      213: -4394294366392483249
+    second: CaveTiles-4_10
   - first:
-      213: -2560184500388821685
-    second: CaveTiles_11
+      213: 1358966398352840547
+    second: CaveTiles-4_11
   - first:
-      213: -7642630238338748970
-    second: CaveTiles_12
+      213: 1567224375875812442
+    second: CaveTiles-4_12
   - first:
-      213: -3311876845739296373
-    second: CaveTiles_13
+      213: -7977001302064946353
+    second: CaveTiles-4_13
   - first:
-      213: -4935763294051389329
-    second: CaveTiles_14
+      213: 2859122125666769237
+    second: CaveTiles-4_14
   - first:
-      213: 1977615194379861509
-    second: CaveTiles_15
+      213: 2574510225703375835
+    second: CaveTiles-4_15
   - first:
-      213: 581761319177697676
-    second: CaveTiles_16
+      213: -7206921963393857756
+    second: CaveTiles-4_16
   - first:
-      213: -3811888857491163014
-    second: CaveTiles_17
+      213: -2533241661084237430
+    second: CaveTiles-4_17
   - first:
-      213: 2493547959418891086
-    second: CaveTiles_18
+      213: -4271103106373114162
+    second: CaveTiles-4_18
   - first:
-      213: 8951742327902856707
-    second: CaveTiles_19
+      213: -6584624938958565670
+    second: CaveTiles-4_19
   - first:
-      213: 3356744704678516843
-    second: CaveTiles_20
+      213: 150156304473788798
+    second: CaveTiles-4_20
   - first:
-      213: 1901193921598802775
-    second: CaveTiles_21
-  - first:
-      213: -5254744167742887519
-    second: CaveTiles_22
-  - first:
-      213: 3000188820671303317
-    second: CaveTiles_23
+      213: -3037445729886922927
+    second: CaveTiles-4_21
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -159,7 +153,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CaveTiles_0
+      name: CaveTiles-4_0
       rect:
         serializedVersion: 2
         x: 64
@@ -173,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb266a5560be6a690800000000000000
-      internalID: -7591121709447093570
+      spriteID: b5f766a177af56110800000000000000
+      internalID: 1253683460743528283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_1
+      name: CaveTiles-4_1
       rect:
         serializedVersion: 2
         x: 128
@@ -194,14 +188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d2b8980393ca7c00800000000000000
-      internalID: 899246111885669078
+      spriteID: db37c5a4c81f3f0e0800000000000000
+      internalID: -2237179005027716163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_2
+      name: CaveTiles-4_2
       rect:
         serializedVersion: 2
         x: 192
@@ -215,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a85d6b33aba5eac60800000000000000
-      internalID: 7831296557821908362
+      spriteID: 6f8b82c4282be6ee0800000000000000
+      internalID: -1265878172551300874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_3
+      name: CaveTiles-4_3
       rect:
         serializedVersion: 2
         x: 256
@@ -236,14 +230,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ac708d715f979630800000000000000
-      internalID: 3933787971878157481
+      spriteID: 0ffae5d7fd9e78dc0800000000000000
+      internalID: -3636681027988049936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_4
+      name: CaveTiles-4_4
       rect:
         serializedVersion: 2
         x: 0
@@ -257,14 +251,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae3b23cbd08199b10800000000000000
-      internalID: 1988647157731865578
+      spriteID: 9fa1822c9c8050400800000000000000
+      internalID: 289647413674121977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_5
+      name: CaveTiles-4_5
       rect:
         serializedVersion: 2
         x: 64
@@ -278,14 +272,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2425e08356f36d10800000000000000
-      internalID: 2117807088299484205
+      spriteID: e2f6bbb0fbcd7be90800000000000000
+      internalID: -7009891581885190354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_6
+      name: CaveTiles-4_6
       rect:
         serializedVersion: 2
         x: 128
@@ -299,14 +293,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dec311da2b29f13b0800000000000000
-      internalID: -5539547720536998675
+      spriteID: 57b835fd968699560800000000000000
+      internalID: 7320997473195101045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_7
+      name: CaveTiles-4_7
       rect:
         serializedVersion: 2
         x: 192
@@ -320,14 +314,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d2a618100f4ea9a0800000000000000
-      internalID: -6219947173529345322
+      spriteID: 4ab76b44806ea6f50800000000000000
+      internalID: 6875560704321420196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_8
+      name: CaveTiles-4_8
       rect:
         serializedVersion: 2
         x: 256
@@ -341,14 +335,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84018016377b11e20800000000000000
-      internalID: 3319636106525806664
+      spriteID: 93b15759f41981670800000000000000
+      internalID: 8509711266912475961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_9
+      name: CaveTiles-4_9
       rect:
         serializedVersion: 2
         x: 0
@@ -362,14 +356,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72121c2b8203da6d0800000000000000
-      internalID: -2977670827266203353
+      spriteID: 557c33aeb04058aa0800000000000000
+      internalID: -6159512466138871979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_10
+      name: CaveTiles-4_10
       rect:
         serializedVersion: 2
         x: 64
@@ -383,14 +377,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2525e8474b46cc4a0800000000000000
-      internalID: -6571767030028021166
+      spriteID: f420da44e845403c0800000000000000
+      internalID: -4394294366392483249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_11
+      name: CaveTiles-4_11
       rect:
         serializedVersion: 2
         x: 128
@@ -404,14 +398,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b450dd6e2c5687cd0800000000000000
-      internalID: -2560184500388821685
+      spriteID: 367538b3db40cd210800000000000000
+      internalID: 1358966398352840547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_12
+      name: CaveTiles-4_12
       rect:
         serializedVersion: 2
         x: 192
@@ -425,14 +419,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dde8266a4cefe590800000000000000
-      internalID: -7642630238338748970
+      spriteID: a5c396f2446efb510800000000000000
+      internalID: 1567224375875812442
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_13
+      name: CaveTiles-4_13
       rect:
         serializedVersion: 2
         x: 256
@@ -446,14 +440,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b893edd4e89d902d0800000000000000
-      internalID: -3311876845739296373
+      spriteID: f432799649ffb4190800000000000000
+      internalID: -7977001302064946353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_14
+      name: CaveTiles-4_14
       rect:
         serializedVersion: 2
         x: 0
@@ -467,14 +461,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f60b7a25f65a08bb0800000000000000
-      internalID: -4935763294051389329
+      spriteID: 559d3ddcc64ada720800000000000000
+      internalID: 2859122125666769237
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_15
+      name: CaveTiles-4_15
       rect:
         serializedVersion: 2
         x: 64
@@ -488,14 +482,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50e3d6b9a86e17b10800000000000000
-      internalID: 1977615194379861509
+      spriteID: bd319a1f86f7ab320800000000000000
+      internalID: 2574510225703375835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_16
+      name: CaveTiles-4_16
       rect:
         serializedVersion: 2
         x: 128
@@ -509,14 +503,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8936a566d4d21800800000000000000
-      internalID: 581761319177697676
+      spriteID: 427c2ff78aedbfb90800000000000000
+      internalID: -7206921963393857756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_17
+      name: CaveTiles-4_17
       rect:
         serializedVersion: 2
         x: 192
@@ -530,14 +524,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7838f5c743791bc0800000000000000
-      internalID: -3811888857491163014
+      spriteID: a818ad4812e18dcd0800000000000000
+      internalID: -2533241661084237430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_18
+      name: CaveTiles-4_18
       rect:
         serializedVersion: 2
         x: 256
@@ -551,14 +545,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4b209f58acda9220800000000000000
-      internalID: 2493547959418891086
+      spriteID: ec62091aa5ef9b4c0800000000000000
+      internalID: -4271103106373114162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_19
+      name: CaveTiles-4_19
       rect:
         serializedVersion: 2
         x: 0
@@ -572,14 +566,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3066a77083afa3c70800000000000000
-      internalID: 8951742327902856707
+      spriteID: ade423e3186be94a0800000000000000
+      internalID: -6584624938958565670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_20
+      name: CaveTiles-4_20
       rect:
         serializedVersion: 2
         x: 64
@@ -593,14 +587,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b68590c268d859e20800000000000000
-      internalID: 3356744704678516843
+      spriteID: e7112f40d56751200800000000000000
+      internalID: 150156304473788798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CaveTiles_21
+      name: CaveTiles-4_21
       rect:
         serializedVersion: 2
         x: 128
@@ -614,50 +608,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75b470a7cc5626a10800000000000000
-      internalID: 1901193921598802775
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CaveTiles_22
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a9212035066317b0800000000000000
-      internalID: -5254744167742887519
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CaveTiles_23
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 59e063336dfc2a920800000000000000
-      internalID: 3000188820671303317
+      spriteID: 1571095a333d8d5d0800000000000000
+      internalID: -3037445729886922927
       vertices: []
       indices: 
       edges: []
