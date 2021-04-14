@@ -85,16 +85,19 @@ public class NoiseTilemap : MonoBehaviour
     {
         if (mapSize.x != currentMapSize.x || mapSize.y != currentMapSize.y)
         {
-            // reconstructs perlinSamples list when target size is updated
+            // special behaviour for if the bounds of the noisemap changes.
+            // currently unused
             currentMapSize.x = mapSize.x;
             currentMapSize.y = mapSize.y;
-            perlinSamples = new float[mapSize.x - 1, mapSize.y - 1];
         }
+
+        perlinSamples = GeneratePerlinSamples();
+
     }
 
-    public float[,] GeneratePerlinSamples() // void(?)
+    public float[,] GeneratePerlinSamples()
     {
-        float[,] samples = new float[mapSize.x - 1, mapSize.y - 1]; // remove(?)
+        float[,] samples = new float[mapSize.x - 1, mapSize.y - 1];
         Quaternion q = Quaternion.Euler(rotation);
 
         Vector3 point00 = q * new Vector3(-0.5f, -0.5f) + offset;
