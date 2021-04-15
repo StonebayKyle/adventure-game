@@ -9,7 +9,7 @@ public class NoiseTilemap : MonoBehaviour
     [Header("Tile")]
 
     [Tooltip("Tile to place according to Noise.")]
-    public TileBase tile;
+    public RuleTile tile;
 
     [Tooltip("How many tiles to generate in each direction.")]
     public Vector2Int mapSize; // target map size
