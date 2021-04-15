@@ -23,10 +23,6 @@ public class NoiseTilemap : MonoBehaviour
     private TileBase[] tileArray;
 
     [Header("Noise")]
-
-    [Range(2, 512)]
-    public int resolution = 256;
-
     public bool randStartingOffset = false;
     public Vector3 offset;
     public bool randStartingRotation = false;
