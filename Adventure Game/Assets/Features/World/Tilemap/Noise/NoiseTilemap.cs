@@ -122,6 +122,7 @@ public class NoiseTilemap : MonoBehaviour
                 {
                     sample = sample * 0.5f + 0.5f;
                 }
+                //Debug.LogWarning("sample: " + sample + "\tloop:(" + x + "," + y + ")\tlength:(" + samples.GetLength(0) + "," + samples.GetLength(1) + ")");
                 samples[y,x] = sample;
             }
         }
