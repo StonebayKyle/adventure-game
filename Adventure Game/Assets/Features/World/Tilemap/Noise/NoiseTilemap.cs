@@ -110,7 +110,7 @@ public class NoiseTilemap : MonoBehaviour
         Vector3 point11 = q * new Vector3(0.5f, 0.5f) + offset;
 
         NoiseMethod method = Noise.methods[(int)type][dimensions - 1];
-        for (int y = 0; y < samples.Length; y++)
+        for (int y = 0; y < samples.GetLength(0); y++)
         {
             Vector3 point0 = Vector3.Lerp(point00, point01, (y + 0.5f));
             Vector3 point1 = Vector3.Lerp(point10, point11, (y + 0.5f));
