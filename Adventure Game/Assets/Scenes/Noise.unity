@@ -1281,11 +1281,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6f570b079bce3448659614c9e2b539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  mapSize: {x: 0, y: 0}
-  resolution: 256
+  tile: {fileID: 11400000, guid: 2af785f1a60cb7b4c9e89b87f08d5717, type: 2}
+  mapSize: {x: 50, y: 50}
+  noiseThreshold: 0.4
   randStartingOffset: 0
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 23208, y: -12362, z: -23713}
   randStartingRotation: 0
   rotation: {x: 0, y: 0, z: 0}
   frequency: 1
@@ -1293,4 +1293,4 @@ MonoBehaviour:
   lacunarity: 2
   persistence: 0.5
   dimensions: 3
-  type: 0
+  type: 1
