@@ -15,7 +15,12 @@ public class NoiseTilemap : MonoBehaviour
     public Vector2Int mapSize; // target map size
     private Vector2Int currentMapSize; // currently created map size
 
+    [Tooltip("Minimum noise value at a tile position required to place a tile.")]
+    public float noiseThreshold = 0.5f;
     private Tilemap tilemap;
+
+    private Vector3Int[] tilePositions;
+    private TileBase[] tileArray;
 
     [Header("Noise")]
 
@@ -89,10 +94,13 @@ public class NoiseTilemap : MonoBehaviour
             // currently unused
             currentMapSize.x = mapSize.x;
             currentMapSize.y = mapSize.y;
+            tilePositions = GeneratePositionArray(mapSize);
         }
 
         perlinSamples = GeneratePerlinSamples();
+        tileArray = GenerateTiles();
 
+        tilemap.SetTiles(tilePositions, tileArray);
     }
 
     public float[,] GeneratePerlinSamples()
@@ -123,5 +131,33 @@ public class NoiseTilemap : MonoBehaviour
         }
 
         return samples;
+    }
+
+    public TileBase[] GenerateTiles()
+    {
+        TileBase[] tiles = new TileBase[tilePositions.Length];
+        int tileCount = 0;
+        for (int x = 0; x < perlinSamples.GetLength(0); x++)
+        {
+            for (int y = 0; y < perlinSamples.GetLength(1); y++)
+            {
+                if (perlinSamples[x,y] >= noiseThreshold)
+                {
+                    tiles[tileCount] = tile;
+                }
+                tileCount++;
+            }
+        }
+        return tiles;
+    }
+
+    public static Vector3Int[] GeneratePositionArray(Vector2Int size)
+    {
+        Vector3Int[] positions = new Vector3Int[size.x * size.y];
+        for (int i = 0; i < positions.Length; i++)
+        {
+            positions[i] = new Vector3Int(i % size.x, i / size.y, 0);
+        }
+        return positions;
     }
 }
